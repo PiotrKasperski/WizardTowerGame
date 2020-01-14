@@ -51,4 +51,5 @@ class TileMap
         states.texture = &m_tileset;
 
         // draw the vertex array
-        target.draw(m_vertices,)}
+        target.draw(m_vertices,states);
+}
