@@ -1,17 +1,25 @@
 # WizardTowerGame
 Projekt z PO
 Aby odpalić musicie mieć zainstalowane:
+
 -cmake
+
 -gcc
+
 -gdb
+
 -libsfml
+
 -libsfml-dev
+
 -git
+
 -clion
+
 Instalacja tych pakietów jest prosta i sprowadza się do wpisania w Google <nazwa dystrybucji linuxa> <nazwa pakietu> installation I wykonaniu kroków z przewaznie pierwszego linku.
 
 Gdy już macie wszystko zaczynamy zabawę.
-Uruchamiacie cliona wybieracie open Project grom git/vcs  czy coś takiego
+Uruchamiacie cliona wybieracie open Project from git/vcs  czy coś takiego
 Wyświetli się okienko dialogowe w które wpisujcie link do tego repozytorium
 Potwierdzanie tyle razy ile będzie trzeba. Być może clion poprosi was o passy do githuba wpiszcie je i potwierdzenie.
 mozna tez wykonac polecenie $ git clone <adres_tego_repozytorium>
@@ -28,14 +36,19 @@ lub oczywiscie znalesc odpowiednia opcje w tym samym menu co na górze.
  Aby zapisac zmiany na serwerze polecenie $ git push -u origin <nazwa_brancha> lub odpowiednia opcja w menu cliona.
  
  Utworzenie nowego brancha
+
 $ git checkout master
+
 $ git pull
-$ git git checkout -b <nazwa_nowego_brancha>
- 
- $aby zmieniĉ branch na którym pracujecie 
+
+$ git git checkout -b <nazwa_nowego_brancha> 
+
+
+Aby zmieniĉ branch na którym pracujecie 
+
  $ git checkout <nazwa_brancha>
  
  Jeŝli nie pracowaliŝcie wczeŝniej z gitem pewnie zastanawiacie się co to te commity branche i po co to w ogóle. Już tłumaczę.
  Git jes ŝwietnym narzedziem do wspólnego pracowania nad projektem.
- Gdzy wszyscy piszemy...cdn
+ Gdy wszyscy piszemy 
  
