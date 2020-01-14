@@ -50,5 +50,6 @@ Aby zmieniĉ branch na którym pracujecie
  
  Jeŝli nie pracowaliŝcie wczeŝniej z gitem pewnie zastanawiacie się co to te commity branche i po co to w ogóle. Już tłumaczę.
  Git jes ŝwietnym narzedziem do wspólnego pracowania nad projektem.
- Gdy wszyscy piszemy 
+ Gdy wszyscy pracujemy nad jednym kodem kazdy pracuje nad innym jego fragmentem. Bez gita po zrobieniu jakiejs funkcj czy klasy trzeba bylo by sie wymieniac kodem. Przy dwoch osobach jeszcze jakos do zrobienia aczkolwiek i tak wprowadziloby to sporo namieszania. Git automatycznie dba o to abysmu wszyscy mieli tą samą  wersje kodu. To tak w skrócie.
+ 
  
