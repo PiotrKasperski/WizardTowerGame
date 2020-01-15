@@ -8,7 +8,29 @@
 Engine::Engine() {}
 
 Engine::Engine(sf::RenderWindow &window){
+
+
     this->window = &window;
+
+
+const int level[] =
+    {
+        0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0,
+        1, 1, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3,
+        0, 1, 0, 0, 2, 0, 3, 3, 3, 0, 1, 1, 1, 0, 0, 0,
+        0, 1, 1, 0, 3, 3, 3, 0, 0, 0, 1, 1, 1, 2, 0, 0,
+        0, 0, 1, 0, 3, 0, 2, 2, 0, 0, 1, 1, 1, 1, 2, 0,
+        2, 0, 1, 0, 3, 0, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1,
+        0, 0, 1, 0, 3, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1,
+    };
+
+   
+    
+    if (!this->map.load("tileset.png", sf::Vector2u(32, 32), level, 16, 8))
+        return -1;
+
+
     player = new Player(sf::Vector2i(0,0), "../assets/textures/character.png", sf::IntRect(32, 64, 32,32));
     this->rendererObject.push_back(player);
     this->movableObjects.push_back(player);
@@ -20,6 +42,7 @@ void Engine::runEngine() {
 }
 
 void Engine::gameLoop() {
+
     sf::Clock clock;
     sf::Time timeFromUpdate;
     const sf::Time timeStep = sf::seconds(1.f/60.f);
@@ -68,6 +91,7 @@ void Engine::draw() {
     for(int i =0; i < this->rendererObject.size(); i++){
         this->rendererObject[i]->Draw(*window);
     }
+ this->window->draw(this->map);
     window->display();
 }
 
