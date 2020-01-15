@@ -9,7 +9,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "RendererObject.h"
 #include "Player.h"
-
+#include "TileMap.h"
 
 class Engine {
 public:
@@ -34,6 +34,7 @@ private:
     void draw();
 
     Player *player;
+    TileMap map;
 
 };
 
