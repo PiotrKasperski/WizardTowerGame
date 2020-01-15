@@ -8,7 +8,7 @@
 
 #include "RendererObject.h"
 
-class MovableObjects: public RendererObject {
+class MovableObjects : public RendererObject {
 public:
     virtual void move();
 };

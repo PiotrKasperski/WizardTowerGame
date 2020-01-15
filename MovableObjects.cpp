@@ -5,6 +5,6 @@
 #include "MovableObjects.h"
 
 void MovableObjects::move() {
- this->position.x +=1;
- this->position.y +=1;
+    this->position.x += 1;
+    this->position.y += 1;
 }

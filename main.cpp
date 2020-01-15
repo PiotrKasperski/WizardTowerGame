@@ -3,7 +3,7 @@
 #include "Game.h"
 
 int main() {
-    sf::RenderWindow app(sf::VideoMode(1024,768), "Lalalal");
+    sf::RenderWindow app(sf::VideoMode(512, 256), "WizardTower");
     Game game(app);
     return 0;
 }

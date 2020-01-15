@@ -13,13 +13,13 @@ include_directories(SFML_INCLUDE_DIR)
 
 find_package(SFML 2.5.1 COMPONENTS system window graphics network audio)
 
-if(SFML_FOUND)
+if (SFML_FOUND)
     message(STATUS "SFML_INCLUDE_DIR: ${SFML_INCLUDE_DIR}")
     message(STATUS "SFML_LIBRARIES: ${SFML_LIBRARIES}")
     message(STATUS "SFML_VERSION: ${SFML_VERSION}")
-endif()
+endif ()
 
 add_executable(WizardTowerGame main.cpp Game.cpp Game.h Engine.cpp Engine.h Player.cpp Player.h RendererObject.cpp RendererObject.h MovableObjects.cpp MovableObjects.h TileMap.cpp TileMap.h)
 
-target_link_libraries (WizardTowerGame sfml-graphics sfml-window sfml-system)
+target_link_libraries(WizardTowerGame sfml-graphics sfml-window sfml-system)
 
