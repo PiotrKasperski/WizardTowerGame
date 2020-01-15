@@ -19,7 +19,7 @@ TileMap::TileMap(const std::string &tilesetPath, const sf::Vector2u &tileSize, c
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
             int tileNumber = tiles[i + j * width];
-
+            setCollisionBoxes(tileNumber, width, height);
             int tu = tileNumber % (this->tileset->getSize().x / tileSize.x);
             int tv = tileNumber / (this->tileset->getSize().x / tileSize.x);
 
@@ -49,7 +49,14 @@ void TileMap::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(this->vertices[0], states);
 }
 
-void TileMap::setCollisionBoxes() {
+void TileMap::setCollisionBoxes(int number, int left, int top) {
+    std::for_each(this->isWall.begin(), this->isWall.end(), [this, number, left, top](int wallNumber) {
+        if (wallNumber == number) {
+            CollisionObject::boundingBoxes = new std::vector<sf::FloatRect *>();
+            CollisionObject::boundingBoxes->push_back(
+                    new sf::FloatRect(sf::Vector2f(left, top), sf::Vector2f(this->tileSize.x, this->tileSize.y)));
+        }
+    });
 
 }
 

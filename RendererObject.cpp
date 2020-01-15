@@ -4,11 +4,11 @@
 
 #include "RendererObject.h"
 
-const sf::Vector2i &RendererObject::getPosition() const {
+const sf::Vector2f &RendererObject::getPosition() const {
     return position;
 }
 
-void RendererObject::setPosition(const sf::Vector2i &position) {
+void RendererObject::setPosition(const sf::Vector2f &position) {
     RendererObject::position = position;
 }
 
@@ -28,7 +28,7 @@ void RendererObject::setSprite(const sf::Sprite &sprite) {
     RendererObject::sprite = sprite;
 }
 
-RendererObject::RendererObject(const sf::Vector2i &position, const sf::Texture &texture, const sf::Sprite &sprite)
+RendererObject::RendererObject(const sf::Vector2f &position, const sf::Texture &texture, const sf::Sprite &sprite)
         : position(position), texture(texture), sprite(sprite) {}
 
 RendererObject::RendererObject() {}

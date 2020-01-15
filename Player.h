@@ -14,9 +14,9 @@ class Player : public MovableObjects, public CollisionObject {
 public:
 
 
-    Player(const sf::Vector2i &position, const std::string textureFilename, sf::IntRect textureRect);
+    Player(const sf::Vector2f &position, const std::string textureFilename, sf::IntRect textureRect);
 
-    void move() override;
+    void move(std::vector<CollisionObject *>) override;
 
     void Update(sf::RenderWindow &window) override;
 };

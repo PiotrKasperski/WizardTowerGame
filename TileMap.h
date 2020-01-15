@@ -8,22 +8,13 @@ public:
     TileMap(const std::string &tilesetPath, const sf::Vector2u &tileSize, const int *tiles, unsigned int width,
             unsigned int height);
 
+    std::vector<int> isWall = {2, 3, 4};
+
 protected:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
 private:
 
-    /*  virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
-      {
-          // apply the transform
-          states.transform *= getTransform();
-
-          // apply the tileset texture
-          states.texture = &m_tilesset;
-
-          // draw the vertex array
-          target.draw(m_vertices, states);
-      }*/
 
     sf::VertexArray *vertices;
     sf::Texture *tileset;
@@ -34,5 +25,5 @@ private:
     unsigned int width;
     unsigned int height;
 
-    void setCollisionBoxes();
+    void setCollisionBoxes(int, int, int);
 };

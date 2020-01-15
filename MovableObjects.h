@@ -7,10 +7,14 @@
 
 
 #include "RendererObject.h"
+#include "CollisionObject.h"
 
 class MovableObjects : public RendererObject {
 public:
-    virtual void move();
+    virtual void move(std::vector<CollisionObject *>);
+
+protected:
+    sf::Vector2f moveVector;
 };
 
 

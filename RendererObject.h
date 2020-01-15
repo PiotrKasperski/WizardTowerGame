@@ -17,20 +17,20 @@ public:
 
     virtual void Update(sf::RenderWindow &window);
 
-    const sf::Vector2i &getPosition() const;
+    const sf::Vector2f &getPosition() const;
 
-    void setPosition(const sf::Vector2i &position);
+    void setPosition(const sf::Vector2f &position);
 
     void setTexture(const sf::Texture &texture);
 
     void setSprite(const sf::Sprite &sprite);
 
-    RendererObject(const sf::Vector2i &position, const sf::Texture &texture, const sf::Sprite &sprite);
+    RendererObject(const sf::Vector2f &position, const sf::Texture &texture, const sf::Sprite &sprite);
 
     RendererObject();
 
 protected:
-    sf::Vector2i position;
+    sf::Vector2f position;
     sf::Texture texture;
     sf::Sprite sprite;
 };

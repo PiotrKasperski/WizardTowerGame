@@ -15,9 +15,14 @@ Engine::Engine(sf::RenderWindow &window) {
 
     this->map = new TileMap("../assets/textures/tileset.png", sf::Vector2u(32, 32), level, 16, 8);
 
-    this->player = new Player(sf::Vector2i(0, 0), "../assets/textures/character.png", sf::IntRect(32, 64, 32, 32));
+    this->player = new Player(sf::Vector2f(68.0f, 70.0f), "../assets/textures/character.png",
+                              sf::IntRect(32, 64, 32, 32));
     this->rendererObject.push_back(player);
     this->movableObjects.push_back(player);
+    this->collisionObject.push_back(this->map);
+
+
+
     this->runEngine();
 }
 
@@ -62,7 +67,7 @@ void Engine::eventHandler() {
 
 void Engine::update() {
     for (int i = 0; i < this->movableObjects.size(); i++) {
-        movableObjects[i]->move();
+        movableObjects[i]->move(collisionObject);
     }
     for (int i = 0; i < this->rendererObject.size(); i++) {
         this->rendererObject[i]->Update(*window);

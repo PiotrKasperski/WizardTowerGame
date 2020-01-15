@@ -2,23 +2,29 @@
 // Created by klonek on 15.01.20.
 //
 
+#include <iostream>
 #include "CollisionObject.h"
 
 
 bool CollisionObject::isCollision(std::vector<CollisionObject *> colObj) {
-    std::for_each(colObj.begin(), colObj.end(), [this](CollisionObject *object) {
+    bool iscolliding = false;
+    std::for_each(colObj.begin(), colObj.end(), [this, &iscolliding](CollisionObject *object) {
         if (!this->isSelf(object)) {
             std::for_each(this->getBoundingBoxes()->begin(), this->getBoundingBoxes()->end(),
-                          [object](sf::FloatRect *thisBoundingBox) {
+                          [object, &iscolliding](sf::FloatRect *thisBoundingBox) {
                               std::for_each(object->getBoundingBoxes()->begin(), object->getBoundingBoxes()->end(),
-                                            [thisBoundingBox](sf::FloatRect *objectBoundingBox) {
-                                                return thisBoundingBox->intersects(*objectBoundingBox);
+                                            [thisBoundingBox, &iscolliding](sf::FloatRect *objectBoundingBox) {
+                                                std::cout << thisBoundingBox->intersects(*objectBoundingBox) << " "
+                                                          << thisBoundingBox->top << ":" << objectBoundingBox->top
+                                                          << "|" << thisBoundingBox->left << ":"
+                                                          << objectBoundingBox->left << std::endl;
+                                                iscolliding = thisBoundingBox->intersects(*objectBoundingBox);
                                             });
                           });
         }
     });
 
-    return false;
+    return iscolliding;
 }
 
 bool CollisionObject::isSelf(CollisionObject *object) {

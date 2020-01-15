@@ -4,7 +4,7 @@
 
 #include "MovableObjects.h"
 
-void MovableObjects::move() {
+void MovableObjects::move(std::vector<CollisionObject *>) {
     this->position.x += 1;
     this->position.y += 1;
 }
