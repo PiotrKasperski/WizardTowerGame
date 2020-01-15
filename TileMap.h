@@ -1,7 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include "RendererObject.h"
+#include "CollisionObject.h"
 
-class TileMap : public sf::Drawable {
+class TileMap : public sf::Drawable, public CollisionObject {
 public:
 
     TileMap(const std::string &tilesetPath, const sf::Vector2u &tileSize, const int *tiles, unsigned int width,
@@ -32,4 +33,6 @@ private:
     const int *tiles;
     unsigned int width;
     unsigned int height;
+
+    void setCollisionBoxes();
 };

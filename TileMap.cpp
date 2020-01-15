@@ -49,6 +49,10 @@ void TileMap::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(this->vertices[0], states);
 }
 
+void TileMap::setCollisionBoxes() {
+
+}
+
 
 
 

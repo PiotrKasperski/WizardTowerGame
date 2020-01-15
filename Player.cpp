@@ -12,6 +12,9 @@ Player::Player(const sf::Vector2i &position, const std::string textureFilename, 
     Player::sprite.setTextureRect(textureRect);
     Player::sprite.setPosition(position.x, position.y);
 
+    CollisionObject::boundingBoxes = new std::vector<sf::FloatRect *>();
+    CollisionObject::boundingBoxes->push_back(new sf::FloatRect(this->sprite.getGlobalBounds()));
+
 }
 
 void Player::move() {
@@ -32,3 +35,7 @@ void Player::move() {
 void Player::Update(sf::RenderWindow &window) {
     Player::sprite.setPosition(Player::position.x, Player::position.y);
 }
+
+
+
+

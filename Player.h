@@ -8,9 +8,12 @@
 
 #include "RendererObject.h"
 #include "MovableObjects.h"
+#include "CollisionObject.h"
 
-class Player : public MovableObjects {
+class Player : public MovableObjects, public CollisionObject {
 public:
+
+
     Player(const sf::Vector2i &position, const std::string textureFilename, sf::IntRect textureRect);
 
     void move() override;
