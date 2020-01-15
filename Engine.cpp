@@ -25,13 +25,13 @@ const int level[] =
         0, 0, 1, 0, 3, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1,
     };
 
-   
+   this->map = new TileMap;
     
-    if (!this->map.load("tileset.png", sf::Vector2u(32, 32), level, 16, 8))
+    if (!this->map.load("../assets/textures/tileset.png", sf::Vector2u(32, 32), level, 16, 8))
         return -1;
 
 
-    player = new Player(sf::Vector2i(0,0), "../assets/textures/character.png", sf::IntRect(32, 64, 32,32));
+    This->player = new Player(sf::Vector2i(0,0), "../assets/textures/character.png", sf::IntRect(32, 64, 32,32));
     this->rendererObject.push_back(player);
     this->movableObjects.push_back(player);
     this->runEngine();
