@@ -9,7 +9,7 @@
 #include "RendererObject.h"
 #include "MovableObjects.h"
 
-class Player: public MovableObjects {
+class Player : public MovableObjects {
 public:
     Player(const sf::Vector2i &position, const std::string textureFilename, sf::IntRect textureRect);
 

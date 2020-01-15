@@ -14,6 +14,7 @@ class RendererObject {
 
 public:
     virtual void Draw(sf::RenderWindow &window);
+
     virtual void Update(sf::RenderWindow &window);
 
     const sf::Vector2i &getPosition() const;

@@ -15,21 +15,17 @@ Player::Player(const sf::Vector2i &position, const std::string textureFilename, 
 }
 
 void Player::move() {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        Player::position.y -=1;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+        Player::position.y -= 1;
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        Player::position.y +=1;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+        Player::position.y += 1;
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        Player::position.x -=1;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+        Player::position.x -= 1;
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-       Player::position.x +=1;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+        Player::position.x += 1;
     }
 }
 

@@ -8,7 +8,7 @@
 
 class Game {
 public:
-    Game(sf::RenderWindow & window);
+    Game(sf::RenderWindow &window);
 
 private:
     void Menu();

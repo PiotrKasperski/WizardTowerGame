@@ -9,7 +9,7 @@
 #include "Game.h"
 #include "Engine.h"
 
-Game::Game(sf::RenderWindow & window) {
+Game::Game(sf::RenderWindow &window) {
     Engine engine(window);
 }
 
