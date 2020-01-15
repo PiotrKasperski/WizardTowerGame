@@ -34,7 +34,7 @@ private:
     void draw();
 
     Player *player;
-    TileMap map;
+    TileMap *map;
 
 };
 
