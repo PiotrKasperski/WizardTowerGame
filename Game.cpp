@@ -8,11 +8,11 @@
 #include <cmath>
 #include "Game.h"
 #include "Engine.h"
-#include "Menu.h"
+//#include "Menu.h"
 
 Game::Game(sf::RenderWindow &window) {
-    //Engine engine(window);
-    class Menu menu(window);
+    Engine engine(window);
+    //class Menu menu(window);
 }
 
 /*void Game::gameLoop(sf::RenderWindow &window) {

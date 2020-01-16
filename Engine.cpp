@@ -5,11 +5,11 @@
 #include <SFML/Window/Event.hpp>
 #include <iostream>
 #include "Engine.h"
+#include "Menu.h"
 
 Engine::Engine() {}
 
 Engine::Engine(sf::RenderWindow &window) {
-
 
     this->window = &window;
 

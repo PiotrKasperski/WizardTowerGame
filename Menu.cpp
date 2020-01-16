@@ -4,25 +4,27 @@
 
 #include "Menu.h"
 
-Menu::Menu(float width, float height){
+Menu::Menu(sf::RenderWindow &window){
     if(!font.loadFromFile("arial.ttf")){
         // error
     }
+    sf::FloatRect TextRect = menu[NumOfElements].getLocalBounds();
+    menu[NumOfElements].setOrigin(TextRect.left + TextRect.width/2.0f, TextRect.top + TextRect.height/2.0f);
 
     menu[0].setFont(font);
     menu[0].setColor(sf::Color::Red);
     menu[0].setString("Play");
-    menu[0].setPosition(sf::Vector2f(width / 2, height / (NumOfElements + 1) * 1));
+    menu[0].setPosition(sf::Vector2f(window.getSize().x / 2, window.getSize().y/(NumOfElements + 1 ) * 1));
 
     menu[1].setFont(font);
     menu[1].setColor(sf::Color::White);
     menu[1].setString("Options");
-    menu[1].setPosition(sf::Vector2f(width / 2, height / (NumOfElements + 1) * 2));
+    menu[1].setPosition(sf::Vector2f(window.getSize().x / 2, window.getSize().y / (NumOfElements + 1) * 2));
 
     menu[2].setFont(font);
     menu[2].setColor(sf::Color::White);
     menu[2].setString("Exit");
-    menu[2].setPosition(sf::Vector2f(width / 2, height / (NumOfElements + 1) * 3));
+    menu[2].setPosition(sf::Vector2f(window.getSize().x / 2, window.getSize().y / (NumOfElements + 1) * 3));
 
     SelectedOption = 0;
 }

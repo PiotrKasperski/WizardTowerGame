@@ -10,9 +10,9 @@
 
 class Menu {
 public:
-    Menu(float width, float height);
-    ~Menu(){};
-
+    Menu();
+    Menu(sf::RenderWindow &window);
+    ~Menu() {};
     void DrawMenu(sf::RenderWindow &window);
     void Up();
     void Down();
@@ -21,5 +21,5 @@ private:
     int SelectedOption;
     sf::Font font;
     sf::Text menu[NumOfElements];
-
+};
 #endif //WIZARDTOWERGAME_MENU_H
