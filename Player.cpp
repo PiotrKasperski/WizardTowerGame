@@ -6,7 +6,7 @@
 #include <iostream>
 #include "Player.h"
 
-Player::Player(const sf::Vector2f &position, const std::string textureFilename, sf::IntRect textureRect) {
+Player::Player(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect) {
     Player::position = position;
     Player::texture.loadFromFile(textureFilename);
     Player::sprite.setTexture(Player::texture);
@@ -37,14 +37,15 @@ void Player::move(std::vector<CollisionObject *> colObj) {
 
     CollisionObject::boundingBoxes[0][0]->left += MovableObjects::moveVector.x;
     CollisionObject::boundingBoxes[0][0]->top += MovableObjects::moveVector.y;
-    std::cout << isCollision(colObj) << std::endl;
-    if (isCollision(colObj) == 1) {
+
+    if (isCollision(colObj)) {
         CollisionObject::boundingBoxes[0][0]->left -= MovableObjects::moveVector.x;
         CollisionObject::boundingBoxes[0][0]->top -= MovableObjects::moveVector.y;
-    } else {
-        Player::position += MovableObjects::moveVector;
-        MovableObjects::moveVector = sf::Vector2f(0.0f, 0.0f);
+
     }
+    Player::position = sf::Vector2f(CollisionObject::boundingBoxes[0][0]->left,
+                                    CollisionObject::boundingBoxes[0][0]->top);
+    MovableObjects::moveVector = sf::Vector2f(0.0f, 0.0f);
 }
 
 void Player::Update(sf::RenderWindow &window) {

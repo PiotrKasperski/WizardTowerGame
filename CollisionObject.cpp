@@ -14,10 +14,6 @@ bool CollisionObject::isCollision(std::vector<CollisionObject *> colObj) {
                           [object, &iscolliding](sf::FloatRect *thisBoundingBox) {
                               std::for_each(object->getBoundingBoxes()->begin(), object->getBoundingBoxes()->end(),
                                             [thisBoundingBox, &iscolliding](sf::FloatRect *objectBoundingBox) {
-                                                std::cout << thisBoundingBox->intersects(*objectBoundingBox) << " "
-                                                          << thisBoundingBox->top << ":" << objectBoundingBox->top
-                                                          << "|" << thisBoundingBox->left << ":"
-                                                          << objectBoundingBox->left << std::endl;
                                                 iscolliding = thisBoundingBox->intersects(*objectBoundingBox);
                                             });
                           });
