@@ -12,6 +12,8 @@ TileMap::TileMap(const std::string &tilesetPath, const sf::Vector2u &tileSize, c
     if (!this->tileset->loadFromFile(tilesetPath)) std::cout << "blad ladowaniA TEXTURY" << std::endl;
     else std::cout << "textura zaladowana" << std::endl;
 
+    CollisionObject::boundingBoxes = new std::vector<sf::FloatRect *>();
+
     this->vertices = new sf::VertexArray;
     this->vertices->setPrimitiveType(sf::Quads);
     this->vertices->resize(width * height * 4);
@@ -19,7 +21,7 @@ TileMap::TileMap(const std::string &tilesetPath, const sf::Vector2u &tileSize, c
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
             int tileNumber = tiles[i + j * width];
-            setCollisionBoxes(tileNumber, width, height);
+            setCollisionBoxes(tileNumber, i, j);
             int tu = tileNumber % (this->tileset->getSize().x / tileSize.x);
             int tv = tileNumber / (this->tileset->getSize().x / tileSize.x);
 
@@ -52,9 +54,9 @@ void TileMap::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 void TileMap::setCollisionBoxes(int number, int left, int top) {
     std::for_each(this->isWall.begin(), this->isWall.end(), [this, number, left, top](int wallNumber) {
         if (wallNumber == number) {
-            CollisionObject::boundingBoxes = new std::vector<sf::FloatRect *>();
             CollisionObject::boundingBoxes->push_back(
-                    new sf::FloatRect(sf::Vector2f(left, top), sf::Vector2f(this->tileSize.x, this->tileSize.y)));
+                    new sf::FloatRect(sf::Vector2f(left * tileSize.x, top * tileSize.y),
+                                      sf::Vector2f(this->tileSize.x, this->tileSize.y)));
         }
     });
 

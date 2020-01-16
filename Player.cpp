@@ -37,7 +37,6 @@ void Player::move(std::vector<CollisionObject *> colObj) {
 
     CollisionObject::boundingBoxes[0][0]->left += MovableObjects::moveVector.x;
     CollisionObject::boundingBoxes[0][0]->top += MovableObjects::moveVector.y;
-
     if (isCollision(colObj)) {
         CollisionObject::boundingBoxes[0][0]->left -= MovableObjects::moveVector.x;
         CollisionObject::boundingBoxes[0][0]->top -= MovableObjects::moveVector.y;
