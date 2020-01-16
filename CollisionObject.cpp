@@ -5,7 +5,6 @@
 #include <iostream>
 #include "CollisionObject.h"
 
-
 bool CollisionObject::isCollision(std::vector<CollisionObject *> colObj) {
     bool iscolliding = false;
     std::for_each(colObj.begin(), colObj.end(), [this, &iscolliding](CollisionObject *object) {

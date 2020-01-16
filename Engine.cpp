@@ -17,10 +17,13 @@ Engine::Engine(sf::RenderWindow &window) {
 
     this->player = new Player(sf::Vector2f(68.0f, 70.0f), "../assets/textures/character.png",
                               sf::IntRect(32, 64, 32, 32));
-    this->rendererObject.push_back(player);
-    this->movableObjects.push_back(player);
-    this->collisionObject.push_back(this->map);
 
+    this->rendererObject.push_back(player);
+
+    this->movableObjects.push_back(player);
+
+    this->collisionObject.push_back(this->map);
+    this->collisionObject.push_back(this->player);
 
 
     this->runEngine();

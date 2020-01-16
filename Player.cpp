@@ -15,7 +15,6 @@ Player::Player(const sf::Vector2f &position, const std::string &textureFilename,
     MovableObjects::moveVector = sf::Vector2f(0.0f, 0.0f);
     CollisionObject::boundingBoxes = new std::vector<sf::FloatRect *>();
     CollisionObject::boundingBoxes->push_back(new sf::FloatRect(this->sprite.getGlobalBounds()));
-
 }
 
 void Player::move(std::vector<CollisionObject *> colObj) {
@@ -36,12 +35,15 @@ void Player::move(std::vector<CollisionObject *> colObj) {
 
 
     CollisionObject::boundingBoxes[0][0]->left += MovableObjects::moveVector.x;
-    CollisionObject::boundingBoxes[0][0]->top += MovableObjects::moveVector.y;
     if (isCollision(colObj)) {
         CollisionObject::boundingBoxes[0][0]->left -= MovableObjects::moveVector.x;
-        CollisionObject::boundingBoxes[0][0]->top -= MovableObjects::moveVector.y;
-
     }
+
+    CollisionObject::boundingBoxes[0][0]->top += MovableObjects::moveVector.y;
+    if (isCollision(colObj)) {
+        CollisionObject::boundingBoxes[0][0]->top -= MovableObjects::moveVector.y;
+    }
+
     Player::position = sf::Vector2f(CollisionObject::boundingBoxes[0][0]->left,
                                     CollisionObject::boundingBoxes[0][0]->top);
     MovableObjects::moveVector = sf::Vector2f(0.0f, 0.0f);
