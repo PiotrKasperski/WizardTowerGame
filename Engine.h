@@ -22,6 +22,7 @@ private:
     std::vector<RendererObject *> rendererObject;
     std::vector<MovableObjects *> movableObjects;
     std::vector<CollisionObject *> collisionObject;
+    std::vector<FightingObject *> fightingObjects;
     sf::RenderWindow *window;
 
     void runEngine();

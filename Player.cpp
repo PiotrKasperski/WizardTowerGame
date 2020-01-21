@@ -15,6 +15,8 @@ Player::Player(const sf::Vector2f &position, const std::string &textureFilename,
     MovableObjects::moveVector = sf::Vector2f(0.0f, 0.0f);
     CollisionObject::boundingBoxes = new std::vector<sf::FloatRect *>();
     CollisionObject::boundingBoxes->push_back(new sf::FloatRect(this->sprite.getGlobalBounds()));
+    Player::setDmgBox(*new sf::FloatRect(this->sprite.getGlobalBounds()));
+    Player::setDefenseBox(*new sf::FloatRect(this->sprite.getGlobalBounds()));
 }
 
 void Player::move(std::vector<CollisionObject *> colObj) {
@@ -32,6 +34,7 @@ void Player::move(std::vector<CollisionObject *> colObj) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         MovableObjects::moveVector.x += 1;
     }
+
 
 
     (*CollisionObject::boundingBoxes)[0]->left += MovableObjects::moveVector.x;
@@ -53,6 +56,7 @@ void Player::move(std::vector<CollisionObject *> colObj) {
 
 void Player::Update(sf::RenderWindow &window) {
     Player::sprite.setPosition(Player::position.x, Player::position.y);
+    std::cout << Player::getCurrentLife() << std::endl;
 }
 
 

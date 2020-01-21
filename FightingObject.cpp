@@ -8,10 +8,10 @@ void FightingObject::TakeDamage(int gainedDmg) {
     Staticstics::setCurrentLife(Staticstics::getCurrentLife() - gainedDmg);
 }
 
-void FightingObject::MakeDamage(std::vector<FightingObject> fightingObjects) {
+void FightingObject::MakeDamage(std::vector<FightingObject *> fightingObjects) {
     for (auto &fightObject: fightingObjects) {
-        this->dmgBox.intersects(fightObject.defenseBox) ||
-        this->dmgBox.contains(fightObject.defenseBox.left, fightObject.defenseBox.top) ? fightObject.TakeDamage(
+        this->dmgBox.intersects(fightObject->defenseBox) ||
+        this->dmgBox.contains(fightObject->defenseBox.left, fightObject->defenseBox.top) ? fightObject->TakeDamage(
                 this->getStrenght()) : this->setStamina(this->getStamina() - 1);
     }
 }

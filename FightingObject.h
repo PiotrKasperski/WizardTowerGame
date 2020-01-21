@@ -16,7 +16,7 @@ private:
 public:
     virtual void TakeDamage(int gainedDmg);
 
-    virtual void MakeDamage(std::vector<FightingObject> fightingObjects);
+    virtual void MakeDamage(std::vector<FightingObject *> fightingObjects);
 
     const sf::FloatRect &getDmgBox() const;
 

@@ -9,8 +9,9 @@
 #include "RendererObject.h"
 #include "MovableObjects.h"
 #include "CollisionObject.h"
+#include "FightingObject.h"
 
-class Player : public MovableObjects, public CollisionObject {
+class Player : public MovableObjects, public CollisionObject, public FightingObject {
 public:
 
 

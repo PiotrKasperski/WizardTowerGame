@@ -32,6 +32,8 @@ Engine::Engine(sf::RenderWindow &window) {
     this->collisionObject.push_back(this->player);
     this->collisionObject.push_back(this->enemy);
 
+    this->fightingObjects.push_back(player);
+
     this->camera = sf::View(this->player->getPosition(),
                             sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
     //camera.setViewport(sf::FloatRect(0.25f, 0.25, 0.5f, 0.5f));
@@ -75,6 +77,9 @@ void Engine::eventHandler() {
         if (event.type == sf::Event::Closed)
             window->close();
     }
+    if (sf::Keyboard::isKeyPressed((sf::Keyboard::A))) {
+        this->player->MakeDamage(this->fightingObjects);
+    }
 
 }
 
@@ -87,6 +92,8 @@ void Engine::update() {
     }
     this->camera.setCenter(this->player->getPosition());
     this->window->setView(this->camera);
+
+
 }
 
 void Engine::draw() {
