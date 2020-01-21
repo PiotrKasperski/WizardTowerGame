@@ -16,6 +16,7 @@ bool CollisionObject::isCollision(std::vector<CollisionObject *> colObj) {
                                                 iscolliding ? iscolliding = true
                                                             : iscolliding = thisBoundingBox->intersects(
                                                         *objectBoundingBox);
+
                                             });
                           });
         }

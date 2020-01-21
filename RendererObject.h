@@ -17,13 +17,13 @@ public:
 
     virtual void Update(sf::RenderWindow &window);
 
-    const sf::Vector2f &getPosition() const;
+    virtual const sf::Vector2f &getPosition() const;
 
-    void setPosition(const sf::Vector2f &position);
+    virtual void setPosition(const sf::Vector2f &position);
 
-    void setTexture(const sf::Texture &texture);
+    virtual void setTexture(const sf::Texture &texture);
 
-    void setSprite(const sf::Sprite &sprite);
+    virtual void setSprite(const sf::Sprite &sprite);
 
     RendererObject(const sf::Vector2f &position, const sf::Texture &texture, const sf::Sprite &sprite);
 

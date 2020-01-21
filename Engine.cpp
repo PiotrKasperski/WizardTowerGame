@@ -5,6 +5,7 @@
 #include <SFML/Window/Event.hpp>
 #include <iostream>
 #include "Engine.h"
+#include "Enemy.h"
 
 Engine::Engine() {}
 
@@ -15,15 +16,21 @@ Engine::Engine(sf::RenderWindow &window) {
 
     this->map = new TileMap("../assets/textures/tileset.png", sf::Vector2u(32, 32), level, 40, 40);
 
-    this->player = new Player(sf::Vector2f(0.0f, 0.0f), "../assets/textures/character.png",
+    this->player = new Player(sf::Vector2f(64.0f, 96.0f), "../assets/textures/character.png",
                               sf::IntRect(32, 64, 32, 32));
+    this->enemy = new Enemy(sf::Vector2f(64.0f, 2 * 96.0f), "../assets/textures/character.png",
+                            sf::IntRect(32, 64, 32, 32));
+
 
     this->rendererObject.push_back(player);
+    this->rendererObject.push_back(enemy);
 
     this->movableObjects.push_back(player);
+    this->movableObjects.push_back(enemy);
 
     this->collisionObject.push_back(this->map);
     this->collisionObject.push_back(this->player);
+    this->collisionObject.push_back(this->enemy);
 
     this->camera = sf::View(this->player->getPosition(),
                             sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
