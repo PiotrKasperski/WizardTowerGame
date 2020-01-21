@@ -65,6 +65,10 @@ void TileMap::setCollisionBoxes(int number, int left, int top) {
 
 TileMap::TileMap() {}
 
+void TileMap::Draw(sf::RenderWindow &window) {
+    window.draw(this[0]);
+}
+
 
 
 

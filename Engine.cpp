@@ -15,7 +15,10 @@ Engine::Engine(sf::RenderWindow &window) {
 
     this->window = &window;
     this->map = new TileMap();
-    files.loadMap("first", *this->map);
+
+    if (!files.loadMap("first", *this->map)) {
+        throw std::runtime_error("Unable to load map file");
+    }
 
 
 
@@ -24,7 +27,7 @@ Engine::Engine(sf::RenderWindow &window) {
     this->enemy = new Enemy(sf::Vector2f(64.0f, 2 * 96.0f), "../assets/textures/character.png",
                             sf::IntRect(32, 64, 32, 32));
 
-
+    this->rendererObject.push_back(map);
     this->rendererObject.push_back(player);
     this->rendererObject.push_back(enemy);
 
@@ -37,7 +40,7 @@ Engine::Engine(sf::RenderWindow &window) {
 
     this->camera = sf::View(this->player->getPosition(),
                             sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
-    //camera.setViewport(sf::FloatRect(0.25f, 0.25, 0.5f, 0.5f));
+
     this->window->setView(this->camera);
     this->runEngine();
 }
@@ -95,7 +98,6 @@ void Engine::update() {
 void Engine::draw() {
     window->clear();
 
-    this->window->draw(this->map[0]);
 
     for (int i = 0; i < this->rendererObject.size(); i++) {
         this->rendererObject[i]->Draw(*window);

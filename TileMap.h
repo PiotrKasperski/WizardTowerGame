@@ -5,7 +5,7 @@
 #include "RendererObject.h"
 #include "CollisionObject.h"
 
-class TileMap : public sf::Drawable, public CollisionObject {
+class TileMap : public sf::Drawable, public CollisionObject, public RendererObject {
 public:
 
     TileMap(const std::string &tilesetPath, const sf::Vector2u &tileSize, const int *tiles, unsigned int width,
@@ -17,7 +17,10 @@ protected:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
 private:
+public:
+    void Draw(sf::RenderWindow &window) override;
 
+private:
     std::vector<int> isWall;
     sf::VertexArray *vertices;
     sf::Texture *tileset;
