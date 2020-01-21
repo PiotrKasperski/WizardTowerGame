@@ -19,7 +19,7 @@ if (SFML_FOUND)
     message(STATUS "SFML_VERSION: ${SFML_VERSION}")
 endif ()
 
-add_executable(WizardTowerGame main.cpp Game.cpp Game.h Engine.cpp Engine.h Player.cpp Player.h RendererObject.cpp RendererObject.h MovableObjects.cpp MovableObjects.h TileMap.cpp TileMap.h CollisionObject.cpp CollisionObject.h Camera.cpp Camera.h Enemy.cpp Enemy.h)
+add_executable(WizardTowerGame main.cpp Game.cpp Game.h Engine.cpp Engine.h Player.cpp Player.h RendererObject.cpp RendererObject.h MovableObjects.cpp MovableObjects.h TileMap.cpp TileMap.h CollisionObject.cpp CollisionObject.h Camera.cpp Camera.h Enemy.cpp Enemy.h Staticstics.cpp Staticstics.h FightingObject.cpp FightingObject.h)
 
 target_link_libraries(WizardTowerGame sfml-graphics sfml-window sfml-system)
 
