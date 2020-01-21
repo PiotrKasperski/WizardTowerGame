@@ -10,8 +10,9 @@
 
 class Menu {
 public:
-    Menu();
-    Menu(sf::RenderWindow &window);
+    //Menu();
+    Menu(float width, float height);
+    //Menu(sf::RenderWindow &window);
     ~Menu() {};
     void DrawMenu(sf::RenderWindow &window);
     void Up();

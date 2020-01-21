@@ -11,8 +11,8 @@
 //#include "Menu.h"
 
 Game::Game(sf::RenderWindow &window) {
-    Engine engine(window);
-    //class Menu menu(window);
+    //Engine engine(window);
+    class Menu menu(float width, float height);
 }
 
 /*void Game::gameLoop(sf::RenderWindow &window) {
