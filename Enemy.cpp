@@ -12,7 +12,6 @@ void Enemy::move(std::vector<CollisionObject *> colObjVector) {
         MovableObjects::moveVector.x = ((std::rand() % 3) - 1);
         MovableObjects::moveVector.y = ((std::rand() % 3) - 1);
     }
-    std::cout << MovableObjects::moveVector.x << " " << MovableObjects::moveVector.y << std::endl;
     (*CollisionObject::boundingBoxes)[0]->left += MovableObjects::moveVector.x;
 
     if (isCollision(colObjVector)) {

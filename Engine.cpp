@@ -6,15 +6,18 @@
 #include <iostream>
 #include "Engine.h"
 #include "Enemy.h"
+#include "FileLoader.h"
 
 Engine::Engine() {}
 
 Engine::Engine(sf::RenderWindow &window) {
-
+    FileLoader files;
 
     this->window = &window;
+    this->map = new TileMap();
+    files.loadMap("first", *this->map);
 
-    this->map = new TileMap("../assets/textures/tileset.png", sf::Vector2u(32, 32), level, 40, 40);
+
 
     this->player = new Player(sf::Vector2f(64.0f, 96.0f), "../assets/textures/character.png",
                               sf::IntRect(32, 64, 32, 32));

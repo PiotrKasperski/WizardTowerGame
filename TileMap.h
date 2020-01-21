@@ -1,3 +1,6 @@
+
+#ifndef WIZARDTOWERGAME_TILEMAP_H
+#define WIZARDTOWERGAME_TILEMAP_H
 #include <SFML/Graphics.hpp>
 #include "RendererObject.h"
 #include "CollisionObject.h"
@@ -6,16 +9,16 @@ class TileMap : public sf::Drawable, public CollisionObject {
 public:
 
     TileMap(const std::string &tilesetPath, const sf::Vector2u &tileSize, const int *tiles, unsigned int width,
-            unsigned int height);
+            unsigned int height, std::vector<int> isWall);
 
-    std::vector<int> isWall = {1, 2, 3, 4};
+    TileMap();
 
 protected:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
 private:
 
-
+    std::vector<int> isWall;
     sf::VertexArray *vertices;
     sf::Texture *tileset;
 
@@ -27,3 +30,5 @@ private:
 
     void setCollisionBoxes(int, int, int);
 };
+
+#endif //WIZARDTOWERGAME_TILEMAP_H

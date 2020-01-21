@@ -5,8 +5,9 @@
 
 
 TileMap::TileMap(const std::string &tilesetPath, const sf::Vector2u &tileSize, const int *tiles, unsigned int width,
-                 unsigned int height) : tilesetPath(tilesetPath), tileSize(tileSize), tiles(tiles), width(width),
-                                        height(height) {
+                 unsigned int height, std::vector<int> isWall) : tilesetPath(tilesetPath), tileSize(tileSize),
+                                                                 tiles(tiles), width(width),
+                                                                 height(height), isWall(isWall) {
 
     this->tileset = new sf::Texture();
     if (!this->tileset->loadFromFile(tilesetPath)) std::cout << "blad ladowaniA TEXTURY" << std::endl;
@@ -61,6 +62,8 @@ void TileMap::setCollisionBoxes(int number, int left, int top) {
     });
 
 }
+
+TileMap::TileMap() {}
 
 
 
