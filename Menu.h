@@ -17,7 +17,7 @@ public:
     void DrawMenu(sf::RenderWindow &window);
     void Up();
     void Down();
-
+    int GetPressedItem() { return SelectedOption; }
 private:
     int SelectedOption;
     sf::Font font;

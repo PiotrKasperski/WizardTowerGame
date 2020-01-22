@@ -2,6 +2,7 @@
 // Created by krzysztof on 15.01.2020.
 //
 
+#include <iostream>
 #include "Menu.h"
 
 Menu::Menu(float width, float height){
