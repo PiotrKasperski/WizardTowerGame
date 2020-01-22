@@ -9,7 +9,7 @@
 #include "RendererObject.h"
 #include "CollisionObject.h"
 
-class MovableObjects : public RendererObject {
+class MovableObjects : public CollisionObject {
 public:
     virtual void move(std::vector<CollisionObject *>);
 

@@ -11,9 +11,10 @@
 #include "CollisionObject.h"
 #include "FightingObject.h"
 
-class Player : public MovableObjects, public CollisionObject, public FightingObject {
+class Player : public FightingObject {
 public:
 
+    void Fight(std::vector<FightingObject *> vector) override;
 
     Player(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect);
 

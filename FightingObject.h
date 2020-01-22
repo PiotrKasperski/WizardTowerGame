@@ -10,17 +10,21 @@
 #include "Staticstics.h"
 #include "MovableObjects.h"
 
-class FightingObject : public Staticstics {
+class FightingObject : public Staticstics, public MovableObjects {
 private:
     sf::FloatRect dmgBox, defenseBox;
 public:
-    virtual void TakeDamage(int gainedDmg);
+    virtual void TakeDamage(int gainedDmg, FightingObject &);
 
     virtual void MakeDamage(std::vector<FightingObject *> fightingObjects);
+
+    virtual void Fight(std::vector<FightingObject *>);
 
     const sf::FloatRect &getDmgBox() const;
 
     void setDmgBox(const sf::FloatRect &dmgBox);
+
+    void setDmgBoxPosition(const sf::Vector2f);
 
     const sf::FloatRect &getDefenseBox() const;
 
