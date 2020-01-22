@@ -57,15 +57,21 @@ void Player::move(std::vector<CollisionObject *> colObj) {
 }
 
 void Player::Update(sf::RenderWindow &window) {
-    Player::sprite.setPosition(Player::position.x, Player::position.y);
-    Player::setDmgBoxPosition(sf::Vector2f(Player::position.x - 32, Player::position.y - 32));
-    Player::setDefenseBox(this->sprite.getGlobalBounds());
+    FightingObject::Update(window);
+    //Player::sprite.setPosition(Player::position.x, Player::position.y);
+/*    Player::setDmgBoxPosition(sf::Vector2f(Player::position.x - 32, Player::position.y - 32));
+    Player::setDefenseBox(this->sprite.getGlobalBounds());*/
+    std::cout << Player::getCurrentLife() << std::endl;
 }
 
 void Player::Fight(std::vector<FightingObject *> vector) {
     if (sf::Keyboard::isKeyPressed((sf::Keyboard::A))) {
         Player::MakeDamage(vector);
     }
+}
+
+void Player::TakeDamage(int gainedDmg, FightingObject &object) {
+    FightingObject::TakeDamage(gainedDmg, object);
 }
 
 

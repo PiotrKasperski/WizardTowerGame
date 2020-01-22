@@ -30,6 +30,7 @@ public:
 
     void setDefenseBox(const sf::FloatRect &defenseBox);
 
+    void Update(sf::RenderWindow &window) override;
 };
 
 

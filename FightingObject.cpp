@@ -10,10 +10,11 @@ void FightingObject::TakeDamage(int gainedDmg, FightingObject &object) {
 
 void FightingObject::MakeDamage(std::vector<FightingObject *> fightingObjects) {
     for (auto &fightObject: fightingObjects) {
-        if (!this->dmgBox.intersects(fightObject->dmgBox))
+        if (!this->defenseBox.intersects(fightObject->defenseBox))
             this->dmgBox.intersects(fightObject->defenseBox) ||
             this->dmgBox.contains(fightObject->defenseBox.left, fightObject->defenseBox.top) ? fightObject->TakeDamage(
-                    this->getStrenght(), *this) : this->setStamina(this->getStamina() - 1);
+                    this->getStrenght(), *this) :
+            this->setStamina(this->getStamina() - 1);
     }
 
     }
@@ -42,4 +43,10 @@ void FightingObject::setDmgBoxPosition(const sf::Vector2f vector) {
 
 void FightingObject::Fight(std::vector<FightingObject *>) {
 
+}
+
+void FightingObject::Update(sf::RenderWindow &window) {
+    RendererObject::Update(window);
+    this->setDmgBoxPosition(sf::Vector2f(this->position.x - 32, this->position.y - 32));
+    this->setDefenseBox(this->sprite.getGlobalBounds());
 }

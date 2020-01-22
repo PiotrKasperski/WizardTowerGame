@@ -38,6 +38,7 @@ void Enemy::move(std::vector<CollisionObject *> colObjVector) {
 
 
 void Enemy::Update(sf::RenderWindow &window) {
+    FightingObject::Update(window);
     Enemy::sprite.setPosition(Enemy::position);
     Enemy::setDefenseBox(this->sprite.getGlobalBounds());
     std::cout << Enemy::getCurrentLife() << std::endl;
@@ -54,7 +55,9 @@ Enemy::Enemy(const sf::Vector2f &position, const std::string &textureFilename, s
     CollisionObject::boundingBoxes = new std::vector<sf::FloatRect *>();
     CollisionObject::boundingBoxes->push_back(new sf::FloatRect(this->sprite.getGlobalBounds()));
     Enemy::setDefenseBox(*new sf::FloatRect(this->sprite.getGlobalBounds()));
-    Enemy::setDefenseBox(*new sf::FloatRect(this->sprite.getGlobalBounds()));
+    Enemy::setDmgBox(sf::FloatRect(
+            sf::Vector2f(this->sprite.getGlobalBounds().left - 32, this->sprite.getGlobalBounds().top - 32),
+            sf::Vector2f(96.0f, 96.0f)));
 
 }
 
@@ -64,7 +67,12 @@ void Enemy::MakeDamage(std::vector<FightingObject *> fightingObjects) {
 }
 
 void Enemy::Fight(std::vector<FightingObject *> vector) {
-    FightingObject::Fight(vector);
+
+    //if (fightedObject && (Enemy::getDmgBox().intersects(fightedObject->getSprite().getGlobalBounds() ) || Enemy::getDmgBox().contains(fightedObject->getSprite().getGlobalBounds().left,fightedObject->getSprite().getGlobalBounds().top)))
+
+    if (isAttack) Enemy::MakeDamage(vector);
+
+
 }
 
 void Enemy::TakeDamage(int gainedDmg, FightingObject &object) {

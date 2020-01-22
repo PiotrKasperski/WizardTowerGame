@@ -13,6 +13,7 @@
 
 class Player : public FightingObject {
 public:
+    void TakeDamage(int gainedDmg, FightingObject &object) override;
 
     void Fight(std::vector<FightingObject *> vector) override;
 

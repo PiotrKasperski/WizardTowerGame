@@ -36,6 +36,8 @@ private:
     void draw();
 
     void cleanVectors(RendererObject *);
+
+    void gameOver();
     Player *player;
     Enemy *enemy;
     TileMap *map;

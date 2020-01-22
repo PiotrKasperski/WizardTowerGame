@@ -91,7 +91,10 @@ void Engine::update() {
     for (auto &fightingObject : fightingObjects) {
         fightingObject->Fight(this->fightingObjects);
         if (fightingObject->getCurrentLife() <= 0) {
-            this->cleanVectors(fightingObject);
+            if (this->player->getCurrentLife() <= 0) {
+                gameOver();
+            } else
+                this->cleanVectors(fightingObject);
         }
     }
     this->camera.setCenter(this->player->getPosition());
@@ -118,5 +121,10 @@ void Engine::cleanVectors(RendererObject *object) {
     movableObjects.erase(std::find(movableObjects.begin(), movableObjects.end(), object));
     collisionObject.erase(std::find(collisionObject.begin(), collisionObject.end(), object));
     delete (object);
+}
+
+void Engine::gameOver() {
+    std::cout << "GAMEOVER";
+    // rendererObject.erase(std::find(rendererObject.begin(), rendererObject.end(), player));
 }
 
