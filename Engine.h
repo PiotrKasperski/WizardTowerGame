@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "TileMap.h"
 #include "Enemy.h"
+#include "Interface.h"
 
 class Engine {
 public:
@@ -34,7 +35,7 @@ private:
     void update();
 
     void draw();
-
+    Interface *interface;
     Player *player;
     Enemy *enemy;
     TileMap *map;

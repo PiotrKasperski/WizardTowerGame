@@ -21,6 +21,7 @@ Engine::Engine(sf::RenderWindow &window) {
     this->enemy = new Enemy(sf::Vector2f(64.0f, 2 * 96.0f), "../assets/textures/character.png",
                             sf::IntRect(32, 64, 32, 32));
 
+    this->interface = new Interface(this->player);
 
     this->rendererObject.push_back(player);
     this->rendererObject.push_back(enemy);
@@ -92,6 +93,8 @@ void Engine::update() {
     }
     this->camera.setCenter(this->player->getPosition());
     this->window->setView(this->camera);
+    //updating GUI data
+    this->interface->update(*window);
 
 
 }
@@ -104,6 +107,8 @@ void Engine::draw() {
     for (int i = 0; i < this->rendererObject.size(); i++) {
         this->rendererObject[i]->Draw(*window);
     }
+    // rendering gui data
+    this->interface->render(*window);
 
     window->display();
 }
