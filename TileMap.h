@@ -2,6 +2,8 @@
 #include "RendererObject.h"
 #include "CollisionObject.h"
 
+#ifndef WIZARDTOWERGAME_TILEMAP_H
+#define WIZARDTOWERGAME_TILEMAP_H
 class TileMap : public sf::Drawable, public CollisionObject {
 public:
 
@@ -14,7 +16,10 @@ protected:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
 private:
+public:
+    void Draw(sf::RenderWindow &window) override;
 
+private:
 
     sf::VertexArray *vertices;
     sf::Texture *tileset;
@@ -27,3 +32,5 @@ private:
 
     void setCollisionBoxes(int, int, int);
 };
+
+#endif //WIZARDTOWERGAME_TILEMAP_H

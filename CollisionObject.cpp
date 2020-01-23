@@ -41,3 +41,7 @@ CollisionObject::~CollisionObject() {
 std::vector<sf::FloatRect *> *CollisionObject::getBoundingBoxes() {
     return this->boundingBoxes;
 }
+
+void CollisionObject::setPosition(const sf::Vector2f &position) {
+    RendererObject::setPosition(position);
+}

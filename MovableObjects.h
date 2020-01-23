@@ -13,6 +13,8 @@ class MovableObjects : public CollisionObject {
 public:
     virtual void move(std::vector<CollisionObject *>);
 
+    void setPosition(const sf::Vector2f &position) override;
+
 protected:
     sf::Vector2f moveVector;
 };
