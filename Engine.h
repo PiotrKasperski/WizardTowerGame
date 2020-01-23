@@ -12,6 +12,7 @@
 #include "TileMap.h"
 #include "Enemy.h"
 #include "Story.h"
+#include "Camera.h"
 
 class Engine {
 public:
@@ -36,13 +37,10 @@ private:
 
     void draw();
 
-    void cleanVectors(RendererObject *);
-
-    void gameOver();
-
     Story *story;
 
-    sf::View camera;
+    Camera *camera;
+
 
 
 };

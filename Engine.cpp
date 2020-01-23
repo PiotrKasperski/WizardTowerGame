@@ -18,9 +18,8 @@ Engine::Engine(sf::RenderWindow &window) {
 
     story->loadCurrentMap(this->rendererObject, this->movableObjects, this->collisionObject, this->fightingObjects);
 
-    this->camera = sf::View(story->getPlayer()->getPosition(),
-                            sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
-    this->window->setView(this->camera);
+    this->camera = new Camera(*this->window, story->getPlayer()->getPosition());
+
     this->runEngine();
 }
 
@@ -75,8 +74,8 @@ void Engine::update() {
         fightingObject->Fight(this->fightingObjects);
     }
     this->story->Update(this->rendererObject, this->movableObjects, this->collisionObject, this->fightingObjects);
-    this->camera.setCenter(this->story->getPlayer()->getPosition());
-    this->window->setView(this->camera);
+    this->camera->Update(this->story->getPlayer()->getPosition());
+
 }
 
 void Engine::draw() {
@@ -90,16 +89,5 @@ void Engine::draw() {
     window->display();
 }
 
-void Engine::cleanVectors(RendererObject *object) {
-    rendererObject.erase(std::find(rendererObject.begin(), rendererObject.end(), object));
-    fightingObjects.erase(std::find(fightingObjects.begin(), fightingObjects.end(), object));
-    movableObjects.erase(std::find(movableObjects.begin(), movableObjects.end(), object));
-    collisionObject.erase(std::find(collisionObject.begin(), collisionObject.end(), object));
-    delete (object);
-}
 
-void Engine::gameOver() {
-    std::cout << "GAMEOVER";
-    // rendererObject.erase(std::find(rendererObject.begin(), rendererObject.end(), player));
-}
 
