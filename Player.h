@@ -9,10 +9,13 @@
 #include "RendererObject.h"
 #include "MovableObjects.h"
 #include "CollisionObject.h"
+#include "FightingObject.h"
 
-class Player : public MovableObjects, public CollisionObject {
+class Player : public FightingObject {
 public:
+    void TakeDamage(int gainedDmg, FightingObject &object) override;
 
+    void Fight(std::vector<FightingObject *> vector) override;
 
     Player(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect);
 

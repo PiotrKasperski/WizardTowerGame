@@ -22,6 +22,7 @@ private:
     std::vector<RendererObject *> rendererObject;
     std::vector<MovableObjects *> movableObjects;
     std::vector<CollisionObject *> collisionObject;
+    std::vector<FightingObject *> fightingObjects;
     sf::RenderWindow *window;
 
     void runEngine();
@@ -34,6 +35,9 @@ private:
 
     void draw();
 
+    void cleanVectors(RendererObject *);
+
+    void gameOver();
     Player *player;
     Enemy *enemy;
     TileMap *map;

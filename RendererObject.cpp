@@ -32,3 +32,7 @@ RendererObject::RendererObject(const sf::Vector2f &position, const sf::Texture &
         : position(position), texture(texture), sprite(sprite) {}
 
 RendererObject::RendererObject() {}
+
+const sf::Sprite &RendererObject::getSprite() const {
+    return sprite;
+}

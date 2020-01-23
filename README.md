@@ -45,7 +45,7 @@ $ git git checkout -b <nazwa_nowego_brancha>
 
 
 Aby zmieniĉ branch na którym pracujecie 
-
+ $ git fetch
  $ git checkout <nazwa_brancha>
  
  Jeŝli nie pracowaliŝcie wczeŝniej z gitem pewnie zastanawiacie się co to te commity branche i po co to w ogóle. Już tłumaczę.
