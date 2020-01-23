@@ -11,9 +11,11 @@
 #include "CollisionObject.h"
 #include "FightingObject.h"
 
-class Player : public MovableObjects, public CollisionObject, public FightingObject {
+class Player : public FightingObject {
 public:
+    void TakeDamage(int gainedDmg, FightingObject &object) override;
 
+    void Fight(std::vector<FightingObject *> vector) override;
 
     std::vector <std::string> getStats();
 

@@ -4,17 +4,21 @@
 
 #include "FightingObject.h"
 
-void FightingObject::TakeDamage(int gainedDmg) {
+void FightingObject::TakeDamage(int gainedDmg, FightingObject &object) {
     Staticstics::setCurrentLife(Staticstics::getCurrentLife() - gainedDmg);
 }
 
 void FightingObject::MakeDamage(std::vector<FightingObject *> fightingObjects) {
     for (auto &fightObject: fightingObjects) {
-        this->dmgBox.intersects(fightObject->defenseBox) ||
-        this->dmgBox.contains(fightObject->defenseBox.left, fightObject->defenseBox.top) ? fightObject->TakeDamage(
-                this->getStrenght()) : this->setStamina(this->getStamina() - 1);
+        if (!this->defenseBox.intersects(fightObject->defenseBox))
+            this->dmgBox.intersects(fightObject->defenseBox) ||
+            this->dmgBox.contains(fightObject->defenseBox.left, fightObject->defenseBox.top) ? fightObject->TakeDamage(
+                    this->getStrenght(), *this) :
+            this->setStamina(this->getStamina() - 1);
     }
-}
+
+    }
+
 
 const sf::FloatRect &FightingObject::getDmgBox() const {
     return dmgBox;
@@ -30,4 +34,19 @@ const sf::FloatRect &FightingObject::getDefenseBox() const {
 
 void FightingObject::setDefenseBox(const sf::FloatRect &defenseBox) {
     FightingObject::defenseBox = defenseBox;
+}
+
+void FightingObject::setDmgBoxPosition(const sf::Vector2f vector) {
+    FightingObject::dmgBox.top = vector.y;
+    FightingObject::dmgBox.left = vector.x;
+}
+
+void FightingObject::Fight(std::vector<FightingObject *>) {
+
+}
+
+void FightingObject::Update(sf::RenderWindow &window) {
+    RendererObject::Update(window);
+    this->setDmgBoxPosition(sf::Vector2f(this->position.x - 32, this->position.y - 32));
+    this->setDefenseBox(this->sprite.getGlobalBounds());
 }

@@ -14,31 +14,12 @@ Engine::Engine(sf::RenderWindow &window) {
 
     this->window = &window;
 
-    this->map = new TileMap("../assets/textures/tileset.png", sf::Vector2u(32, 32), level, 40, 40);
+    this->story = new Story;
 
-    this->player = new Player(sf::Vector2f(64.0f, 96.0f), "../assets/textures/character.png",
-                              sf::IntRect(32, 64, 32, 32));
-    this->enemy = new Enemy(sf::Vector2f(64.0f, 2 * 96.0f), "../assets/textures/character.png",
-                            sf::IntRect(32, 64, 32, 32));
+    story->loadCurrentMap(this->rendererObject, this->movableObjects, this->collisionObject, this->fightingObjects);
 
-    this->interface = new Interface(this->player);
+    this->camera = new Camera(*this->window, story->getPlayer()->getPosition());
 
-    this->rendererObject.push_back(player);
-    this->rendererObject.push_back(enemy);
-
-    this->movableObjects.push_back(player);
-    this->movableObjects.push_back(enemy);
-
-    this->collisionObject.push_back(this->map);
-    this->collisionObject.push_back(this->player);
-    this->collisionObject.push_back(this->enemy);
-
-    this->fightingObjects.push_back(player);
-
-    this->camera = sf::View(this->player->getPosition(),
-                            sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
-    //camera.setViewport(sf::FloatRect(0.25f, 0.25, 0.5f, 0.5f));
-    this->window->setView(this->camera);
     this->runEngine();
 }
 
@@ -78,38 +59,38 @@ void Engine::eventHandler() {
         if (event.type == sf::Event::Closed)
             window->close();
     }
-    if (sf::Keyboard::isKeyPressed((sf::Keyboard::A))) {
-        this->player->MakeDamage(this->fightingObjects);
-    }
+
 
 }
 
 void Engine::update() {
-    for (int i = 0; i < this->movableObjects.size(); i++) {
-        movableObjects[i]->move(collisionObject);
+    for (auto &movableObject : movableObjects) {
+        movableObject->move(collisionObject);
     }
-    for (int i = 0; i < this->rendererObject.size(); i++) {
-        this->rendererObject[i]->Update(*window);
+    for (const auto &object : rendererObject) {
+        object->Update(*this->window);
     }
-    this->camera.setCenter(this->player->getPosition());
-    this->window->setView(this->camera);
+    for (auto &fightingObject : fightingObjects) {
+        fightingObject->Fight(this->fightingObjects);
+    }
+    this->story->Update(this->rendererObject, this->movableObjects, this->collisionObject, this->fightingObjects);
+    this->camera->Update(this->story->getPlayer()->getPosition());
     //updating GUI data
     this->interface->update(*window);
-
-
 }
 
 void Engine::draw() {
     window->clear();
 
-    this->window->draw(this->map[0]);
 
-    for (int i = 0; i < this->rendererObject.size(); i++) {
-        this->rendererObject[i]->Draw(*window);
+    for (const auto &object : rendererObject) {
+        object->Draw(*this->window);
     }
     // rendering gui data
     this->interface->render(*window);
 
     window->display();
 }
+
+
 

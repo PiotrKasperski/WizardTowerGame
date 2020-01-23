@@ -29,6 +29,8 @@ public:
 
     RendererObject();
 
+    const sf::Sprite &getSprite() const;
+
 protected:
     sf::Vector2f position;
     sf::Texture texture;

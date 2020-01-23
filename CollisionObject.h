@@ -8,8 +8,9 @@
 
 #include <SFML/Graphics/Rect.hpp>
 #include <vector>
+#include "RendererObject.h"
 
-class CollisionObject {
+class CollisionObject : public RendererObject {
 public:
     virtual std::vector<sf::FloatRect *> *getBoundingBoxes();
 
@@ -21,6 +22,9 @@ public:
 
 private:
     bool isSelf(CollisionObject *);
+
+public:
+    void setPosition(const sf::Vector2f &position) override;
 
 protected:
     std::vector<sf::FloatRect *> *boundingBoxes;
