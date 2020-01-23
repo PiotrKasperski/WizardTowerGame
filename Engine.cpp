@@ -16,6 +16,8 @@ Engine::Engine(sf::RenderWindow &window) {
 
     this->story = new Story;
 
+    this->interface = new Interface(this->story->getPlayer());
+
     story->loadCurrentMap(this->rendererObject, this->movableObjects, this->collisionObject, this->fightingObjects);
 
     this->camera = new Camera(*this->window, story->getPlayer()->getPosition());

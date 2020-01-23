@@ -4,6 +4,7 @@
 
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
+#include <sstream>
 #include "Player.h"
 
 Player::Player(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect) {
@@ -111,9 +112,6 @@ std::vector <std::string> Player::getStats()
 
 void Player::Update(sf::RenderWindow &window) {
     FightingObject::Update(window);
-    //Player::sprite.setPosition(Player::position.x, Player::position.y);
-/*    Player::setDmgBoxPosition(sf::Vector2f(Player::position.x - 32, Player::position.y - 32));
-    Player::setDefenseBox(this->sprite.getGlobalBounds());*/
     std::cout << Player::getCurrentLife() << std::endl;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X)){
         this->LevelUp();
