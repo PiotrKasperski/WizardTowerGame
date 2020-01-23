@@ -8,8 +8,9 @@
 
 #include <SFML/Graphics/Rect.hpp>
 #include <vector>
+#include "RendererObject.h"
 
-class CollisionObject {
+class CollisionObject : public RendererObject {
 public:
     virtual std::vector<sf::FloatRect *> *getBoundingBoxes();
 

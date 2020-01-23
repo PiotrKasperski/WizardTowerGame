@@ -38,6 +38,9 @@ Engine::Engine(sf::RenderWindow &window) {
     this->collisionObject.push_back(this->player);
     this->collisionObject.push_back(this->enemy);
 
+    this->fightingObjects.push_back(player);
+    this->fightingObjects.push_back(enemy);
+
     this->camera = sf::View(this->player->getPosition(),
                             sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
 
@@ -82,27 +85,52 @@ void Engine::eventHandler() {
             window->close();
     }
 
+
 }
 
 void Engine::update() {
-    for (int i = 0; i < this->movableObjects.size(); i++) {
-        movableObjects[i]->move(collisionObject);
+    for (auto &movableObject : movableObjects) {
+        movableObject->move(collisionObject);
     }
-    for (int i = 0; i < this->rendererObject.size(); i++) {
-        this->rendererObject[i]->Update(*window);
+    for (const auto &object : rendererObject) {
+        object->Update(*this->window);
+    }
+    for (auto &fightingObject : fightingObjects) {
+        fightingObject->Fight(this->fightingObjects);
+        if (fightingObject->getCurrentLife() <= 0) {
+            if (this->player->getCurrentLife() <= 0) {
+                gameOver();
+            } else
+                this->cleanVectors(fightingObject);
+        }
     }
     this->camera.setCenter(this->player->getPosition());
     this->window->setView(this->camera);
+
+
 }
 
 void Engine::draw() {
     window->clear();
 
 
-    for (int i = 0; i < this->rendererObject.size(); i++) {
-        this->rendererObject[i]->Draw(*window);
+    for (const auto &object : rendererObject) {
+        object->Draw(*this->window);
     }
 
     window->display();
+}
+
+void Engine::cleanVectors(RendererObject *object) {
+    rendererObject.erase(std::find(rendererObject.begin(), rendererObject.end(), object));
+    fightingObjects.erase(std::find(fightingObjects.begin(), fightingObjects.end(), object));
+    movableObjects.erase(std::find(movableObjects.begin(), movableObjects.end(), object));
+    collisionObject.erase(std::find(collisionObject.begin(), collisionObject.end(), object));
+    delete (object);
+}
+
+void Engine::gameOver() {
+    std::cout << "GAMEOVER";
+    // rendererObject.erase(std::find(rendererObject.begin(), rendererObject.end(), player));
 }
 
