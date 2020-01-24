@@ -9,14 +9,19 @@
 #include "Enemy.h"
 
 class Quest {
+private:
     enum questType {
         KILL, FIND
     };
+    questType type;
     int experience;
     int questCount;
     std::string questDescription;
     std::string questName;
     std::string enemyToKillName;
+    std::string questMap;
+public:
+    friend std::istream &operator>>(std::istream &in, Quest &quest);
 
 };
 

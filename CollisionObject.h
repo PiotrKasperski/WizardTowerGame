@@ -16,6 +16,7 @@ public:
 
     virtual bool isCollision(std::vector<CollisionObject *>);
 
+
     CollisionObject();
 
     virtual ~CollisionObject();

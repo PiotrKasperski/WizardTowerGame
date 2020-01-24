@@ -44,19 +44,7 @@ void Enemy::Update(sf::RenderWindow &window) {
 }
 
 Enemy::Enemy(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect) {
-    isAttack = false;
-    Enemy::position = position;
-    Enemy::texture.loadFromFile(textureFilename);
-    Enemy::sprite.setTexture(Enemy::texture);
-    Enemy::sprite.setTextureRect(textureRect);
-    Enemy::sprite.setPosition(Enemy::position);
-    MovableObjects::moveVector = sf::Vector2f(0.0f, 0.0f);
-    CollisionObject::boundingBoxes = new std::vector<sf::FloatRect *>();
-    CollisionObject::boundingBoxes->push_back(new sf::FloatRect(this->sprite.getGlobalBounds()));
-    Enemy::setDefenseBox(*new sf::FloatRect(this->sprite.getGlobalBounds()));
-    Enemy::setDmgBox(sf::FloatRect(
-            sf::Vector2f(this->sprite.getGlobalBounds().left - 32, this->sprite.getGlobalBounds().top - 32),
-            sf::Vector2f(96.0f, 96.0f)));
+    this->Create(position, textureFilename, textureRect);
 
 }
 
@@ -79,6 +67,53 @@ void Enemy::TakeDamage(int gainedDmg, FightingObject &object) {
     fightedObject = &object;
     isAttack = true;
 }
+
+std::istream &operator>>(std::istream &in, Enemy &enemy) {
+    std::srand(std::time(NULL));
+    in >> enemy.enemyName;
+    in >> enemy.level;
+    in >> enemy.experience;
+    in >> enemy.maxLife;
+    enemy.currentLife = enemy.maxLife;
+    int random;
+    in >> random;
+    in >> enemy.strenght;
+    enemy.strenght += ((std::rand() % (random * 2) + 1) - random);
+    in >> enemy.speed;
+    in >> enemy.defence;
+    enemy.defence += ((std::rand() % (random * 2) + 1) - random);
+    in >> enemy.stamina;
+    in >> enemy.textureName;
+    enemy.Create(sf::Vector2f(0.0f, 0.0f), enemy.textureName, sf::IntRect(32, 64, 32, 32));
+
+    return in;
+}
+
+std::ostream &operator<<(std::ostream &os, const Enemy &enemy) {
+    os << " enemyName: " << enemy.enemyName;
+    return os;
+}
+
+void Enemy::Create(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect) {
+    isAttack = false;
+    Enemy::position = position;
+    Enemy::textureName = textureFilename;
+    Enemy::texture.loadFromFile("../assets/textures/" + textureFilename + ".png");
+    Enemy::sprite.setTexture(Enemy::texture);
+    Enemy::sprite.setTextureRect(textureRect);
+    Enemy::sprite.setPosition(Enemy::position);
+    MovableObjects::moveVector = sf::Vector2f(0.0f, 0.0f);
+    CollisionObject::boundingBoxes = new std::vector<sf::FloatRect *>();
+    CollisionObject::boundingBoxes->push_back(new sf::FloatRect(this->sprite.getGlobalBounds()));
+    Enemy::setDefenseBox(*new sf::FloatRect(this->sprite.getGlobalBounds()));
+    Enemy::setDmgBox(sf::FloatRect(
+            sf::Vector2f(this->sprite.getGlobalBounds().left - 32, this->sprite.getGlobalBounds().top - 32),
+            sf::Vector2f(96.0f, 96.0f)));
+}
+
+Enemy::Enemy() {}
+
+
 
 
 

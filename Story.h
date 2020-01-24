@@ -10,8 +10,11 @@
 #include "Quest.h"
 
 class Story {
+private:
     std::vector<Maps *> maps;
     std::vector<Quest *> quests;
+public:
+    friend std::istream &operator>>(std::istream &in, Story &story);
 
 };
 

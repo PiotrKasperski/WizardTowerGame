@@ -11,9 +11,12 @@
 #include "TileMap.h"
 
 class Maps {
+private:
     std::string mapName;
     TileMap tileMap;
     std::vector<Enemy *> enemies;
+public:
+    friend std::istream &operator>>(std::istream &in, Maps &map);
 };
 
 

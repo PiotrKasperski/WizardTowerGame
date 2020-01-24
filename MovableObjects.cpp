@@ -8,3 +8,9 @@ void MovableObjects::move(std::vector<CollisionObject *>) {
     this->position.x += 1;
     this->position.y += 1;
 }
+
+void MovableObjects::setPosition(const sf::Vector2f &position) {
+    (*CollisionObject::boundingBoxes)[0]->left = position.x;
+    (*CollisionObject::boundingBoxes)[0]->top = position.y;
+    RendererObject::setPosition(position);
+}

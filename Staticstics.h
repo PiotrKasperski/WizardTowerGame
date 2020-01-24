@@ -10,9 +10,10 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 class Staticstics{
-private:
+
+protected:
     int level;
-    int expirience;
+    int experience;
     int maxLife;
     int currentLife;
     int strenght;
@@ -25,7 +26,7 @@ public:
 
     int getExpirience() const;
 
-    void setExpirience(int expirience);
+    void setExpirience(int experience);
 
     void setMaxLife(int maxLife);
 

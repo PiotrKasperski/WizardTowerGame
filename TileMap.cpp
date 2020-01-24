@@ -69,6 +69,22 @@ void TileMap::Draw(sf::RenderWindow &window) {
     window.draw(this[0]);
 }
 
+const int *TileMap::getTiles() const {
+    return tiles;
+}
+
+unsigned int TileMap::getWidth() const {
+    return width;
+}
+
+unsigned int TileMap::getHeight() const {
+    return height;
+}
+
+const std::vector<int> &TileMap::getIsWall() const {
+    return isWall;
+}
+
 
 
 

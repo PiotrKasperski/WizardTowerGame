@@ -6,7 +6,7 @@
 Staticstics::Staticstics()
 {
     this->level=1;
-    this->expirience=0;
+    this->experience = 0;
     this->maxLife=100;
     this->currentLife=100;
     this->strenght=1;
@@ -16,7 +16,7 @@ Staticstics::Staticstics()
     this->stamina=100;
 }
 int Staticstics::getExperience(){
-    return this->expirience;
+    return this->experience;
 }
 int Staticstics::getMaxLife(){
     return this->maxLife;
@@ -26,7 +26,7 @@ int Staticstics::getLevel(){
 }
 void Staticstics::IncreaseStatistics(){ }
 void Staticstics::increaseExperience(int gainedExpirence){
-    this->expirience += gainedExpirence;
+    this->experience += gainedExpirence;
 }
 void Staticstics::LevelUp(){
     this->level++;
@@ -38,11 +38,11 @@ void Staticstics::setLevel(int level) {
 }
 
 int Staticstics::getExpirience() const {
-    return expirience;
+    return experience;
 }
 
 void Staticstics::setExpirience(int expirience) {
-    Staticstics::expirience = expirience;
+    Staticstics::experience = expirience;
 }
 
 void Staticstics::setMaxLife(int maxLife) {

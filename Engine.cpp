@@ -19,13 +19,19 @@ Engine::Engine(sf::RenderWindow &window) {
     if (!files.loadMap("first", *this->map)) {
         throw std::runtime_error("Unable to load map file");
     }
-
-
+    this->enemy = new Enemy;
+    if (!files.loadEnemy("pies", *this->enemy, *this->map)) {
+        throw std::runtime_error("Unable to load enemy file");
+    }
+    auto *story = new Story;
+    if (!files.loadStory("story", *story)) {
+        throw std::runtime_error("Unable to load story file");
+    }
 
     this->player = new Player(sf::Vector2f(64.0f, 96.0f), "../assets/textures/character.png",
                               sf::IntRect(32, 64, 32, 32));
-    this->enemy = new Enemy(sf::Vector2f(64.0f, 2 * 96.0f), "../assets/textures/character.png",
-                            sf::IntRect(32, 64, 32, 32));
+    //this->enemy = new Enemy(sf::Vector2f(64.0f, 2 * 96.0f), "character",
+    //                      sf::IntRect(32, 64, 32, 32));
 
     this->rendererObject.push_back(map);
     this->rendererObject.push_back(player);

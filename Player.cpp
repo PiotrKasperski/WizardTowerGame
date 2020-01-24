@@ -19,6 +19,8 @@ Player::Player(const sf::Vector2f &position, const std::string &textureFilename,
             sf::Vector2f(this->sprite.getGlobalBounds().left - 32, this->sprite.getGlobalBounds().top - 32),
             sf::Vector2f(96.0f, 96.0f)));
     Player::setDefenseBox(this->sprite.getGlobalBounds());
+    this->strenght = 20;
+    this->defence = 20;
 }
 
 void Player::move(std::vector<CollisionObject *> colObj) {
