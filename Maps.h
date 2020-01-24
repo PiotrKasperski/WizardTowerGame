@@ -13,20 +13,22 @@
 
 class Maps {
 private:
+
     std::string mapName;
+
     TileMap *tileMap;
+
     std::vector<Enemy *> enemies;
-public:
-    friend std::istream &operator>>(std::istream &in, Maps &map);
+
     std::vector<Door *> doors;
 public:
+    friend std::istream &operator>>(std::istream &in, Maps &map);
+
     TileMap *getTileMap() const;
 
     std::vector<Enemy *> &getEnemies();
 
     const std::vector<Door *> &getDoors() const;
-
-    Maps(const std::string &mapName, const TileMap &tileMap, const std::vector<Enemy *> &enemies);
 
     Maps(const std::string &mapName);
 

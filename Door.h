@@ -15,13 +15,16 @@ class Door {
     sf::Vector2f positionBehindDoor;
 
 public:
+    Door();
+
+    friend std::istream &operator>>(std::istream &in, Door &door);
+
     const sf::FloatRect &getDoor() const;
 
     const std::string &getDoorTo() const;
 
     const sf::Vector2f &getPositionBehindDoor() const;
 
-public:
     Door(const sf::FloatRect &door, const std::string &doorTo, const sf::Vector2f &positionBehindDoor);
 };
 

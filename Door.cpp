@@ -20,3 +20,20 @@ const std::string &Door::getDoorTo() const {
 const sf::Vector2f &Door::getPositionBehindDoor() const {
     return positionBehindDoor;
 }
+
+std::istream &operator>>(std::istream &in, Door &door) {
+    in >> door.door.width;
+    in >> door.door.height;
+    in >> door.door.left;
+    in >> door.door.top;
+    in >> door.doorTo;
+    in >> door.positionBehindDoor.x;
+    in >> door.positionBehindDoor.y;
+    door.door.left *= 32;
+    door.door.top *= 32;
+    door.positionBehindDoor.x *= 32;
+    door.positionBehindDoor.y *= 32;
+    return in;
+}
+
+Door::Door() {}

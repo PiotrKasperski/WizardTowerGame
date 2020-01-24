@@ -28,16 +28,16 @@ void Player::move(std::vector<CollisionObject *> colObj) {
 
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-        MovableObjects::moveVector.y -= 5;
+        MovableObjects::moveVector.y -= 10;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-        MovableObjects::moveVector.y += 5;
+        MovableObjects::moveVector.y += 10;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        MovableObjects::moveVector.x -= 5;
+        MovableObjects::moveVector.x -= 10;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        MovableObjects::moveVector.x += 5;
+        MovableObjects::moveVector.x += 10;
     }
 
 

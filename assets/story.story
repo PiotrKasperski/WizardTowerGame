@@ -1,6 +1,18 @@
 2
-startLocation 2 30 pies 4 fox
-dungeon 1 3 pies
+startLocation
+1
+32 65
+92 51
+dungeon
+1 26
+2 3 pies 4 fox
+dungeon
+1
+32 65
+0 26
+startLocation
+90 51
+1 3 pies
 2
 KILL 100 2 Psy pies first
 Zabij dwa psy.

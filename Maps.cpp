@@ -10,6 +10,15 @@ std::istream &operator>>(std::istream &in, Maps &map) {
     in >> map.mapName;
     map.tileMap = new TileMap;
     fileLoader.loadMap(map.mapName, *map.tileMap);
+    int doorCount;
+    in >> doorCount;
+    for (int k = 0; k < doorCount; ++k) {
+        auto *door = new Door;
+        in >> *door;
+        map.doors.push_back(door);
+    }
+
+
     int enemyTypeCount;
     in >> enemyTypeCount;
     for (int j = 0; j < enemyTypeCount; ++j) {
