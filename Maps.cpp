@@ -8,7 +8,8 @@
 std::istream &operator>>(std::istream &in, Maps &map) {
     FileLoader fileLoader;
     in >> map.mapName;
-    fileLoader.loadMap(map.mapName, map.tileMap);
+    map.tileMap = new TileMap;
+    fileLoader.loadMap(map.mapName, *map.tileMap);
     int enemyTypeCount;
     in >> enemyTypeCount;
     for (int j = 0; j < enemyTypeCount; ++j) {
@@ -18,7 +19,7 @@ std::istream &operator>>(std::istream &in, Maps &map) {
         in >> enemyPath;
         for (int i = 0; i < enemyCount; ++i) {
             Enemy *enemy = new Enemy;
-            fileLoader.loadEnemy(enemyPath, *enemy, map.tileMap);
+            fileLoader.loadEnemy(enemyPath, *enemy, *map.tileMap);
             map.enemies.push_back(enemy);
         }
     }
@@ -28,7 +29,6 @@ std::istream &operator>>(std::istream &in, Maps &map) {
 }
 
 Maps::Maps(const std::string &mapName) : mapName(mapName) {
-    this->tileMap = new TileMap("../assets/textures/tileset.png", sf::Vector2u(32, 32), level, 40, 40);
     auto *enemy1 = new Enemy(sf::Vector2f(64.0f, 2 * 96.0f), "../assets/textures/character.png",
                              sf::IntRect(32, 64, 32, 32));
     auto *enemy2 = new Enemy(sf::Vector2f(5 * 64.0f, 4 * 96.0f), "../assets/textures/character.png",
@@ -56,3 +56,5 @@ const std::vector<Door *> &Maps::getDoors() const {
 const std::string &Maps::getMapName() const {
     return mapName;
 }
+
+Maps::Maps() {}

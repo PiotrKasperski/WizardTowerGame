@@ -30,6 +30,8 @@ public:
 
     Maps(const std::string &mapName);
 
+    Maps();
+
     const std::string &getMapName() const;
 };
 

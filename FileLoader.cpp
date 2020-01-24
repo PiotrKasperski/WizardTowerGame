@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <random>
 #include "FileLoader.h"
 
 bool FileLoader::loadMap(const std::string path, TileMap &map) {
@@ -15,6 +16,7 @@ bool FileLoader::loadMap(const std::string path, TileMap &map) {
         int level[width * height];
         for (auto &i : level) {
             mapFile >> i;
+            i -= 1;
         }
         std::vector<int> walls;
         int wallCount = 0;
@@ -26,7 +28,7 @@ bool FileLoader::loadMap(const std::string path, TileMap &map) {
         }
         std::string texturePath;
         mapFile >> texturePath;
-        map = *new TileMap("../assets/textures/" + texturePath, sf::Vector2u(32, 32), level, 40, 40, walls);
+        map = *new TileMap("../assets/textures/" + texturePath, sf::Vector2u(32, 32), level, width, height, walls);
         mapFile.close();
         return true;
     } else
@@ -67,9 +69,13 @@ bool FileLoader::loadQuest(std::string path, Quest &quest) {
 }
 
 sf::Vector2f FileLoader::randomizePosition(TileMap &tileMap) {
-    std::srand(std::time(NULL));
-    int x = ((std::rand() % tileMap.getWidth())) * 32;
-    int y = ((std::rand() % tileMap.getHeight())) * 32;
+    std::random_device rd;  //Will be used to obtain a seed for the random number engine
+    std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+    std::uniform_int_distribution<> randWidth(0, tileMap.getWidth());
+    std::uniform_int_distribution<> randHeight(0, tileMap.getHeight());
+
+    int x = (randWidth(gen)) * 32;
+    int y = (randHeight(gen)) * 32;
     return sf::Vector2f(x, y);
 }
 

@@ -8,7 +8,7 @@ std::istream &operator>>(std::istream &in, Story &story) {
     int i;
     in >> i;
     for (int j = 0; j < i; ++j) {
-        Maps *map = new Maps;
+        auto map = new Maps;
         in >> *map;
         story.maps.push_back(map);
     }
@@ -19,13 +19,11 @@ std::istream &operator>>(std::istream &in, Story &story) {
         story.quests.push_back(quest);
     }
 
+    story.currentMap = story.maps[0];
     return in;
 }
 Story::Story() {
-    auto *map = new Maps("first");
-    this->maps.push_back(map);
-    this->currentMap = this->maps[0];
-    this->player = new Player(sf::Vector2f(64.0f, 96.0f), "../assets/textures/character.png",
+    this->player = new Player(sf::Vector2f(18 * 32.0f, 58 * 32.0f), "../assets/textures/character.png",
                               sf::IntRect(32, 64, 32, 32));
 }
 

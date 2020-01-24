@@ -28,9 +28,6 @@ protected:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
 
-private:
-public:
-    void Draw(sf::RenderWindow &window) override;
 
 private:
     std::vector<int> isWall;

@@ -14,29 +14,14 @@ Engine::Engine(sf::RenderWindow &window) {
     FileLoader files;
 
     this->window = &window;
-    this->map = new TileMap();
 
-    if (!files.loadMap("first", *this->map)) {
-        throw std::runtime_error("Unable to load map file");
-    }
-    this->enemy = new Enemy;
-    if (!files.loadEnemy("pies", *this->enemy, *this->map)) {
-        throw std::runtime_error("Unable to load enemy file");
-    }
-    auto *story = new Story;
+    this->story = new Story;
     if (!files.loadStory("story", *story)) {
         throw std::runtime_error("Unable to load story file");
     }
-
-    this->player = new Player(sf::Vector2f(64.0f, 96.0f), "../assets/textures/character.png",
-                              sf::IntRect(32, 64, 32, 32));
-    //this->enemy = new Enemy(sf::Vector2f(64.0f, 2 * 96.0f), "character",
-    //                      sf::IntRect(32, 64, 32, 32));
-    this->story = new Story;
+    story->loadCurrentMap(this->rendererObject, this->movableObjects, this->collisionObject, this->fightingObjects);
 
     this->interface = new Interface(this->story->getPlayer());
-
-    story->loadCurrentMap(this->rendererObject, this->movableObjects, this->collisionObject, this->fightingObjects);
 
     this->camera = new Camera(*this->window, story->getPlayer()->getPosition());
 

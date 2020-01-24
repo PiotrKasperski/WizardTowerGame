@@ -114,7 +114,6 @@ std::vector <std::string> Player::getStats()
 
 void Player::Update(sf::RenderWindow &window) {
     FightingObject::Update(window);
-    std::cout << Player::getCurrentLife() << std::endl;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X)){
         this->LevelUp();
     }
