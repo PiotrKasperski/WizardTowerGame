@@ -8,6 +8,14 @@
 #include "Player.h"
 
 Player::Player(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect) {
+    weapon1 = new Weapon("start bron", true, 10, 10);
+    weapon2 = new Weapon("nowa bron", false, 10, 10);
+    armor1 = new Armor("start zbroja", true, 10, 10);
+    armor2 = new Armor("nowa zbroja", false, 10, 10);
+    PlayerEq.push_back(weapon1);
+    PlayerEq.push_back(weapon2);
+    PlayerEq.push_back(armor1);
+    PlayerEq.push_back(armor2);
     Player::position = position;
     Player::texture.loadFromFile(textureFilename);
     Player::sprite.setTexture(Player::texture);

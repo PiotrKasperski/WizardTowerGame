@@ -13,8 +13,6 @@
 #include "Enemy.h"
 #include "Story.h"
 #include "Camera.h"
-#include "Interface.h"
-
 class Engine {
 public:
     Engine();
@@ -38,7 +36,6 @@ private:
 
     void draw();
 
-    Interface *interface;
     Story *story;
 
     Camera *camera;

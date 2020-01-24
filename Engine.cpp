@@ -21,7 +21,6 @@ Engine::Engine(sf::RenderWindow &window) {
     }
     story->loadCurrentMap(this->rendererObject, this->movableObjects, this->collisionObject, this->fightingObjects);
 
-    this->interface = new Interface(this->story->getPlayer());
 
     this->camera = new Camera(*this->window, story->getPlayer()->getPosition());
 
@@ -81,8 +80,6 @@ void Engine::update() {
     }
     this->story->Update(this->rendererObject, this->movableObjects, this->collisionObject, this->fightingObjects);
     this->camera->Update(this->story->getPlayer()->getPosition());
-    //updating GUI data
-    this->interface->update(*window);
 }
 
 void Engine::draw() {
@@ -92,9 +89,6 @@ void Engine::draw() {
     for (const auto &object : rendererObject) {
         object->Draw(*this->window);
     }
-    // rendering gui data
-    this->interface->render(*window);
-
     window->display();
 }
 

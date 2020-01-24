@@ -10,9 +10,15 @@
 #include "MovableObjects.h"
 #include "CollisionObject.h"
 #include "FightingObject.h"
+#include "Equipment.h"
 
 class Player : public FightingObject {
 public:
+    Weapon* weapon1;
+    Weapon* weapon2;
+    Armor* armor1;
+    Armor* armor2;
+    std::vector<Equipment *> PlayerEq;
     void TakeDamage(int gainedDmg, FightingObject &object) override;
 
     void Fight(std::vector<FightingObject *> vector) override;
