@@ -5,7 +5,7 @@ startLocation
 92 51
 dungeon
 1 26
-2 3 pies 4 fox
+2 20 pies 10 fox
 dungeon
 1
 32 65
