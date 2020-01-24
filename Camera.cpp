@@ -13,4 +13,5 @@ Camera::Camera(sf::RenderWindow &window, sf::Vector2f position) {
 void Camera::Update(sf::Vector2f position) {
     this->camera.setCenter(position);
     this->window->setView(this->camera);
+
 }

@@ -25,6 +25,7 @@ Engine::Engine(sf::RenderWindow &window) {
 
     this->camera = new Camera(*this->window, story->getPlayer()->getPosition());
 
+
     this->runEngine();
 }
 
@@ -36,7 +37,7 @@ void Engine::gameLoop() {
 
     sf::Clock clock;
     sf::Time timeFromUpdate;
-    const sf::Time timeStep = sf::seconds(1.f / 60.f);
+    const sf::Time timeStep = sf::seconds(1.f / 30.f);
     while (this->window->isOpen()) {
 
         sf::Time time = clock.restart();

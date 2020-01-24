@@ -54,7 +54,7 @@ void TileMap::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 
 void TileMap::setCollisionBoxes(int number, int left, int top) {
     std::for_each(this->isWall.begin(), this->isWall.end(), [this, number, left, top](int wallNumber) {
-        if (wallNumber == number) {
+        if (wallNumber == number + 1) {
             CollisionObject::boundingBoxes->push_back(
                     new sf::FloatRect(sf::Vector2f(left * tileSize.x, top * tileSize.y),
                                       sf::Vector2f(this->tileSize.x, this->tileSize.y)));
