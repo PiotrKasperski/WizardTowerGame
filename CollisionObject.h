@@ -24,6 +24,9 @@ public:
 private:
     bool isSelf(CollisionObject *);
 
+public:
+    void setPosition(const sf::Vector2f &position) override;
+
 protected:
     std::vector<sf::FloatRect *> *boundingBoxes;
 

@@ -29,8 +29,8 @@ void Staticstics::increaseExperience(int gainedExpirence){
     this->experience += gainedExpirence;
 }
 void Staticstics::LevelUp(){
-    this->level++;
-    this->freePoints++;
+    Staticstics::level++;
+    Staticstics::freePoints++;
 }
 
 void Staticstics::setLevel(int level) {

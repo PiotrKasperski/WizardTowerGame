@@ -4,6 +4,7 @@
 
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
+#include <sstream>
 #include "Player.h"
 
 Player::Player(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect) {
@@ -58,12 +59,66 @@ void Player::move(std::vector<CollisionObject *> colObj) {
     MovableObjects::moveVector = sf::Vector2f(0.0f, 0.0f);
 }
 
+std::vector <std::string> Player::getStats()
+{
+    std::vector <std::string> v;
+    std::ostringstream ss;
+
+    std::string statystic;
+    statystic="Level: ";
+    ss << this->getLevel();
+    statystic+=ss.str();
+    v.push_back(statystic);
+
+    statystic="Exp: ";
+    ss.str(std::string());
+    ss<< this->getExperience();
+    statystic+=ss.str();
+    statystic+="/";
+    ss.str(std::string());
+    ss<< this->getExperience();
+    statystic+=ss.str();
+    v.push_back(statystic);
+
+    statystic="Life: ";
+    ss.str(std::string());
+    ss << this->getCurrentLife();
+    statystic+=ss.str();
+    statystic+="/";
+    ss.str(std::string());
+    ss << this->getMaxLife();
+    statystic+=ss.str();
+    v.push_back(statystic);
+
+    statystic="Strenght: ";
+    ss.str(std::string());
+    ss << this->getStrenght();
+    statystic+=ss.str();
+    v.push_back(statystic);
+
+    statystic="Defense: ";
+    ss.str(std::string());
+    ss << this->getDefence();
+    statystic+=ss.str();
+    v.push_back(statystic);
+
+    statystic="Speed: ";
+    ss.str(std::string());
+    ss << this->getSpeed();
+    statystic+=ss.str();
+    v.push_back(statystic);
+
+
+    return v;
+}
+
 void Player::Update(sf::RenderWindow &window) {
     FightingObject::Update(window);
-    //Player::sprite.setPosition(Player::position.x, Player::position.y);
-/*    Player::setDmgBoxPosition(sf::Vector2f(Player::position.x - 32, Player::position.y - 32));
-    Player::setDefenseBox(this->sprite.getGlobalBounds());*/
     std::cout << Player::getCurrentLife() << std::endl;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::X)){
+        this->LevelUp();
+    }
+    Player::sprite.setPosition(Player::position.x, Player::position.y);
 }
 
 void Player::Fight(std::vector<FightingObject *> vector) {

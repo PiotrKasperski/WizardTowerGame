@@ -85,6 +85,10 @@ const std::vector<int> &TileMap::getIsWall() const {
     return isWall;
 }
 
+void TileMap::Draw(sf::RenderWindow &window) {
+    window.draw((*this));
+}
+
 
 
 

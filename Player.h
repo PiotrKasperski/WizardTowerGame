@@ -17,6 +17,8 @@ public:
 
     void Fight(std::vector<FightingObject *> vector) override;
 
+    std::vector <std::string> getStats();
+
     Player(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect);
 
     void move(std::vector<CollisionObject *>) override;

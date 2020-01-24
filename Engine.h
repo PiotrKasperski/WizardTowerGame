@@ -11,6 +11,9 @@
 #include "Player.h"
 #include "TileMap.h"
 #include "Enemy.h"
+#include "Story.h"
+#include "Camera.h"
+#include "Interface.h"
 
 class Engine {
 public:
@@ -35,13 +38,12 @@ private:
 
     void draw();
 
-    void cleanVectors(RendererObject *);
+    Interface *interface;
+    Story *story;
 
-    void gameOver();
-    Player *player;
-    Enemy *enemy;
-    TileMap *map;
-    sf::View camera;
+    Camera *camera;
+
+
 
 };
 
