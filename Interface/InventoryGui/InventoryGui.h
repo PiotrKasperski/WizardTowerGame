@@ -18,9 +18,9 @@ private:
     sf::Sprite invSprite;
     sf::Texture invTexture;
     bool drawInv;
-    std::vector <Equipment *> StatsToDraw;
+    std::vector <Equipment *> invToDraw;
     std::vector <sf::Text> position;
-    sf::Text BackToGameText;
+    sf::Text backToGameText;
 
 
 

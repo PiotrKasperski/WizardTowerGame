@@ -11,13 +11,12 @@
 #include "CollisionObject.h"
 #include "FightingObject.h"
 #include "Equipment.h"
+#include "Projectile.h"
 
 class Player : public FightingObject {
 public:
-    Weapon* weapon1;
-    Weapon* weapon2;
-    Armor* armor1;
-    Armor* armor2;
+    Weapon* weaponStart;
+    Armor* armorStart;
     std::vector<Equipment *> PlayerEq;
     void TakeDamage(int gainedDmg, FightingObject &object) override;
 

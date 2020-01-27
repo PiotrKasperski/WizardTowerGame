@@ -90,11 +90,12 @@ void Story::levelUp() {
 
 void Story::changeMap() {
     for (const auto &door : this->currentMap->getDoors()) {
+        /*
         std::cout << "contains: " << door->getDoor().contains(
                 sf::Vector2f(this->player->getPosition().x + 16, this->player->getPosition().y + 16)) << " player pos "
                   << this->player->getPosition().x + 16 << " " << this->player->getPosition().y + 16
                   << " door pos " << door->getDoor().left << " " << door->getDoor().top << " " << door->getDoor().width
-                  << " " << door->getDoor().height << std::endl;
+                  << " " << door->getDoor().height << std::endl; */
         if (door->getDoor().contains(
                 sf::Vector2f(this->player->getPosition().x + 16, this->player->getPosition().y + 16))) {
             auto it = std::find_if(this->maps.begin(), this->maps.end(), [door](const Maps *map) {

@@ -82,6 +82,9 @@ void Hud::drawExp(sf::RenderWindow& window) {
 }
 
     void Hud::Draw(sf::RenderWindow &window) {
+        this->updateHpBar(window);
+        this->updateExpBar(window);
+        this->updateLvlText(window);
         this->drawExp(window);
         this->drawHpBar(window);
         this->drawLvlText(window);

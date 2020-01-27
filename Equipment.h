@@ -13,6 +13,7 @@ public:
     bool isEquiped;
     int defense; // ile dmg jest redukowane (bron rowniez sluzy do obrony wiec wspolne)
     virtual void use(std::vector<Equipment *> eqVector);
+    virtual void use(std::vector<Equipment *>  & eqPlayer, std::vector<Equipment *> & eqLoot);
 
     Equipment();
     ~Equipment();

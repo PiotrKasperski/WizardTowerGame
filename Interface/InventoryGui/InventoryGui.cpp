@@ -25,7 +25,7 @@ InventoryGui::~InventoryGui() = default;
 void InventoryGui::Update(sf::RenderWindow &window) {
     // wypelnianie wektora itemami (pelny obiekt)
     // bedzie jakies player get equipment funkcja
-    InventoryGui::StatsToDraw = player->PlayerEq;
+    InventoryGui::invToDraw = player->PlayerEq;
     InventoryGui::position.clear();
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::I))
     {
@@ -33,22 +33,22 @@ void InventoryGui::Update(sf::RenderWindow &window) {
         this->drawInv = !this->drawInv;
     }
     // wypelnianie wektora position textem do wypisania
-    for (size_t i = 0 ; i < InventoryGui::StatsToDraw.size() ; i++)
+    for (size_t i = 0 ; i < InventoryGui::invToDraw.size() ; i++)
     {
         sf::Text textInPos;
         textInPos.setFont(InventoryGui::font);
-        textInPos.setString(InventoryGui::StatsToDraw[i]->name);
+        textInPos.setString(InventoryGui::invToDraw[i]->name);
         textInPos.setCharacterSize(20);
-        textInPos.setPosition(player->getPosition().x - 100 , player->getPosition().y -(InventoryGui::StatsToDraw.size()*25)/2+(i*25));
-        if(InventoryGui::StatsToDraw[i]->isEquiped){
+        textInPos.setPosition(player->getPosition().x - 100 , player->getPosition().y - (InventoryGui::invToDraw.size() * 25) / 2 + (i * 25));
+        if(InventoryGui::invToDraw[i]->isEquiped){
             textInPos.setFillColor(sf::Color::Green);
         }
         InventoryGui::position.push_back(textInPos);
     }
-    BackToGameText.setFont(InventoryGui::font);
-    BackToGameText.setString("WROC");
-    BackToGameText.setCharacterSize(20);
-    BackToGameText.setPosition(player->getPosition().x - 100 , player->getPosition().y - 120);
+    backToGameText.setFont(InventoryGui::font);
+    backToGameText.setString("WROC");
+    backToGameText.setCharacterSize(20);
+    backToGameText.setPosition(player->getPosition().x - 100 , player->getPosition().y + 100 );
 
 }
 
@@ -66,16 +66,16 @@ void InventoryGui::Draw(sf::RenderWindow &window)
                sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
                 while(pos.getGlobalBounds().contains(mouse_in_map) &&
                       sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {}
-                for(auto &eq : InventoryGui::StatsToDraw) {
+                for(auto &eq : InventoryGui::invToDraw) {
                     if(pos.getString() == eq->name){
                         eq->use(player->PlayerEq);
                     }
                 }
                 }
             }
-        if(BackToGameText.getGlobalBounds().contains(mouse_in_map) &&
+        if(backToGameText.getGlobalBounds().contains(mouse_in_map) &&
            sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-            while(BackToGameText.getGlobalBounds().contains(mouse_in_map) &&
+            while(backToGameText.getGlobalBounds().contains(mouse_in_map) &&
                   sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {}
             this->drawInv = !this->drawInv;
         }
@@ -83,7 +83,7 @@ void InventoryGui::Draw(sf::RenderWindow &window)
         for(auto &pos : InventoryGui::position) {
             window.draw(pos);
         }
-        window.draw(BackToGameText);
+        window.draw(backToGameText);
     }
 
 }
