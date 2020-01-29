@@ -6,7 +6,7 @@
 #include <SFML/Window/Mouse.hpp>
 #include "StatsGui.h"
 void StatsGui::initFont() {
-    this->font.loadFromFile("Fonts/font.ttf");
+    this->font.loadFromFile("../Fonts/font.ttf");
 }
 StatsGui::StatsGui(Player* player) {
     this->player = player;
@@ -15,7 +15,7 @@ StatsGui::StatsGui(Player* player) {
 
     this->interfaceDialog.setSize(sf::Vector2f(128 , 19));
     this->interfaceDialog.setFillColor(sf::Color::Blue);
-    this->statstexture.loadFromFile("assets/textures/stat.png");
+    this->statstexture.loadFromFile("../assets/textures/stat.png");
     this->stats.setTexture(statstexture);
 }
 StatsGui::~StatsGui() = default;

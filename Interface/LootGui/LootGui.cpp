@@ -7,7 +7,7 @@
 #include <iostream>
 #include "LootGui.h"
 void LootGui::initFont() {
-    this->font.loadFromFile("Fonts/font.ttf");
+    this->font.loadFromFile("../Fonts/font.ttf");
 }
 LootGui::LootGui(Player* player) {
     this->initFont();
@@ -15,7 +15,7 @@ LootGui::LootGui(Player* player) {
     this->player  = player;
     this->invDialog.setSize(sf::Vector2f(128 , 19));
     this->invDialog.setFillColor(sf::Color::Blue);
-    this->invTexture.loadFromFile("assets/textures/stat.png");
+    this->invTexture.loadFromFile("../assets/textures/stat.png");
     this->invSprite.setTexture(invTexture);
     this->lootDialog.setSize(sf::Vector2f(128 , 19));
     this->invDialog.setFillColor(sf::Color::Blue);

@@ -7,7 +7,7 @@
 #include <iostream>
 #include "InventoryGui.h"
 void InventoryGui::initFont() {
-    this->font.loadFromFile("Fonts/font.ttf");
+    this->font.loadFromFile("../Fonts/font.ttf");
 }
 InventoryGui::InventoryGui(Player* player) {
     this->initFont();
@@ -16,7 +16,7 @@ InventoryGui::InventoryGui(Player* player) {
 
     this->invDialog.setSize(sf::Vector2f(128 , 19));
     this->invDialog.setFillColor(sf::Color::Blue);
-    this->invTexture.loadFromFile("assets/textures/stat.png");
+    this->invTexture.loadFromFile("../assets/textures/stat.png");
     this->invSprite.setTexture(invTexture);
 }
 InventoryGui::~InventoryGui() = default;
