@@ -6,7 +6,7 @@
 #include <SFML/Window/Mouse.hpp>
 #include "StatsGui.h"
 void StatsGui::initFont() {
-    this->font.loadFromFile("../Fonts/font.ttf");
+    this->font.loadFromFile("../assets/Fonts/font.ttf");
 }
 StatsGui::StatsGui(Player* player) {
     this->player = player;

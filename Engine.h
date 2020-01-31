@@ -12,11 +12,12 @@
 #include "TileMap.h"
 #include "Enemy.h"
 #include "Story.h"
-#include "Camera.h"
+#include "Interface/Camera.h"
 #include "Interface/Hud/Hud.h"
 #include "Interface/InventoryGui/InventoryGui.h"
 #include "Interface/StatsGui/StatsGui.h"
 #include "Interface/LootGui/LootGui.h"
+#include "Equipment/Projectile.h"
 
 class Engine {
 public:
@@ -29,8 +30,9 @@ private:
     std::vector<MovableObjects *> movableObjects;
     std::vector<CollisionObject *> collisionObject;
     std::vector<FightingObject *> fightingObjects;
-    std::vector<Projectile *> projectileObjects;
+
     sf::RenderWindow *window;
+    FightMenager *fightMenager;
 
     void runEngine();
 
@@ -42,7 +44,6 @@ private:
 
     void draw();
 
-    Projectile *projectile1;
     Hud *hud;
     InventoryGui *invGui;
     StatsGui *statsGui;

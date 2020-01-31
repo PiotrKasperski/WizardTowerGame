@@ -34,7 +34,7 @@ CollisionObject::CollisionObject() {
 }
 
 CollisionObject::~CollisionObject() {
-    delete CollisionObject::boundingBoxes;
+    //delete CollisionObject::boundingBoxes;
 }
 
 

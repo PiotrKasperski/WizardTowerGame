@@ -4,7 +4,7 @@
 
 #include "Hud.h"
 void Hud::initFont() {
-    this->font.loadFromFile("../Fonts/font.ttf");
+    this->font.loadFromFile("../assets/Fonts/font.ttf");
 }
 void Hud::initHpBar() {
     this->hpBarBackground.setSize(sf::Vector2f(100.f, 10.f));

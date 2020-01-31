@@ -9,11 +9,13 @@
 #include "Maps.h"
 #include "Quest.h"
 #include "Player.h"
+#include "FightMenager.h"
 
 class Story {
 private:
     std::vector<Maps *> maps;
     std::vector<Quest *> quests;
+    //FightMenager fightMenager;
 public:
     friend std::istream &operator>>(std::istream &in, Story &story);
     Maps *currentMap;

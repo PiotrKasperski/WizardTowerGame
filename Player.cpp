@@ -7,9 +7,10 @@
 #include <sstream>
 #include <SFML/Window/Mouse.hpp>
 #include "Player.h"
+#include "FightMenager.h"
 
 Player::Player(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect) {
-    weaponStart = new Weapon("start bron", true, 10, 10);
+    weaponStart = new Weapon("sword", true, 10, 10);
     armorStart = new Armor("start zbroja", true, 10, 10);
     PlayerEq.push_back(weaponStart);
     PlayerEq.push_back(armorStart);
@@ -127,7 +128,9 @@ void Player::Update(sf::RenderWindow &window) {
 
 void Player::Fight(std::vector<FightingObject *> vector) {
     if (sf::Keyboard::isKeyPressed((sf::Keyboard::A))) {
-        Player::MakeDamage(vector);
+        FightMenager tmpMenager;
+        tmpMenager.addProjectile(
+                Projectile(this->weaponStart->projectile, this->position, this->strenght, sf::Vector2f(1200, 0)));
     }
 }
 

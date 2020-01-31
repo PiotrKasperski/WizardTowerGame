@@ -7,7 +7,7 @@
 #include <iostream>
 #include "LootGui.h"
 void LootGui::initFont() {
-    this->font.loadFromFile("../Fonts/font.ttf");
+    this->font.loadFromFile("../assets/Fonts/font.ttf");
 }
 LootGui::LootGui(Player* player) {
     this->initFont();
@@ -21,8 +21,8 @@ LootGui::LootGui(Player* player) {
     this->invDialog.setFillColor(sf::Color::Blue);
     this->lootSprite.setTexture(invTexture);
 
-    testWeapon = new Weapon("loot bron", false, 10, 10);
-    testWeapon2 = new Weapon("loot n bron", false, 10, 10);
+//    testWeapon = new Weapon("loot bron", false, 10, 10);
+//    testWeapon2 = new Weapon("loot n bron", false, 10, 10);
     testArmor = new Armor("loot zbroja", false, 10, 10);
     lootToDraw.push_back(testWeapon);
     lootToDraw.push_back(testWeapon2);

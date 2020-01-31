@@ -7,8 +7,8 @@
 
 
 #include <SFML/Graphics/RectangleShape.hpp>
-#include "FightingObject.h"
-#include "Player.h"
+#include "../FightingObject.h"
+
 
 class Projectile: public FightingObject  {
 public:
@@ -16,13 +16,28 @@ public:
     sf::Vector2f destination;
     sf::Vector2f size;
     sf::RectangleShape projectileShape;
+    std::string name;
     float speed;
+
+    bool isCollision(std::vector<CollisionObject *> vector) override;
+
     float maxDistance;
     float damage;
-    Projectile(sf::Vector2f startingPosition, sf::Vector2f size, float speed, float maxDistance, float damage, sf::Vector2f destination);
+
+    Projectile(const sf::Vector2f &size, const std::string &name, float speed, float maxDistance, float damage);
+
+    Projectile(Projectile &projectile, sf::Vector2f startingPosition, float damage, sf::Vector2f destination);
+
+    Projectile();
+
     ~Projectile();
-    void Update(std::vector<Projectile *> & projectileObjects, std::vector<FightingObject *> & fightingObjects);
+
+    void move(std::vector<CollisionObject *> vector) override;
+
+
     void Draw(sf::RenderWindow &window);
+
+    CollisionObject *hitedObject;
 };
 
 

@@ -62,6 +62,7 @@ Player *Story::getPlayer() const {
 
 void Story::Update(std::vector<RendererObject *> &rendererObject, std::vector<MovableObjects *> &movableObjects,
                    std::vector<CollisionObject *> &collisionObject, std::vector<FightingObject *> &fightingObjects) {
+    //fightMenager.update(collisionObject);
     this->kill(fightingObjects);
     this->levelUp();
     this->changeMap();

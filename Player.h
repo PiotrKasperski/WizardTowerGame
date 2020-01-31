@@ -10,8 +10,9 @@
 #include "MovableObjects.h"
 #include "CollisionObject.h"
 #include "FightingObject.h"
-#include "Equipment.h"
-#include "Projectile.h"
+#include "Equipment/Weapon.h"
+#include "Equipment/Armor.h"
+
 
 class Player : public FightingObject {
 public:

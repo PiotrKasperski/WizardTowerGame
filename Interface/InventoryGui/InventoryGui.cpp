@@ -7,7 +7,7 @@
 #include <iostream>
 #include "InventoryGui.h"
 void InventoryGui::initFont() {
-    this->font.loadFromFile("../Fonts/font.ttf");
+    this->font.loadFromFile("../assets/Fonts/font.ttf");
 }
 InventoryGui::InventoryGui(Player* player) {
     this->initFont();
