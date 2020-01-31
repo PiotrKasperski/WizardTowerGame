@@ -16,6 +16,9 @@ public:
 
     virtual bool isCollision(std::vector<CollisionObject *>);
 
+    bool operator==(const CollisionObject &rhs) const;
+
+    bool operator!=(const CollisionObject &rhs) const;
 
     CollisionObject();
 

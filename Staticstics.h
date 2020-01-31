@@ -21,6 +21,12 @@ protected:
     int defence;
     int freePoints;
     int stamina;
+    std::string name;
+public:
+    const std::string &getName() const;
+
+    void setName(const std::string &name);
+
 public:
     void setLevel(int level);
 
@@ -53,6 +59,10 @@ public:
     int getStamina() const;
 
     void setStamina(int stamina);
+
+    bool operator==(const Staticstics &rhs) const;
+
+    bool operator!=(const Staticstics &rhs) const;
 
 public:
     Staticstics();

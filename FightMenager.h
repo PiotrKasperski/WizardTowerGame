@@ -26,6 +26,10 @@ public:
 
     void draw(sf::RenderWindow *window);
 
+    static std::vector<Projectile *> &getProjectileVector();
+
+    void clear();
+
     FightMenager();
 };
 

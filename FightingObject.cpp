@@ -50,3 +50,18 @@ void FightingObject::Update(sf::RenderWindow &window) {
     this->setDmgBoxPosition(sf::Vector2f(this->position.x - 32, this->position.y - 32));
     this->setDefenseBox(this->sprite.getGlobalBounds());
 }
+
+bool FightingObject::operator==(const FightingObject &rhs) const {
+    return static_cast<const Staticstics &>(*this) == static_cast<const Staticstics &>(rhs) &&
+           static_cast<const MovableObjects &>(*this) == static_cast<const MovableObjects &>(rhs) &&
+           dmgBox == rhs.dmgBox &&
+           defenseBox == rhs.defenseBox;
+}
+
+bool FightingObject::operator!=(const FightingObject &rhs) const {
+    return !(rhs == *this);
+}
+
+bool FightingObject::operator!=(const CollisionObject &rhs) const {
+    return rhs.getPosition() != position;
+}

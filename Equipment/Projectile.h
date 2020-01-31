@@ -12,24 +12,25 @@
 
 class Projectile: public FightingObject  {
 public:
+    bool hited = false;
     sf::Vector2f actualPosition;
-    sf::Vector2f destination;
+    float rotation;
     sf::Vector2f size;
-    sf::RectangleShape projectileShape;
     std::string name;
     float speed;
+    float maxDistance;
+    float damage;
+    FightingObject *attacker;
 
     bool isCollision(std::vector<CollisionObject *> vector) override;
 
-    float maxDistance;
-    float damage;
-
     Projectile(const sf::Vector2f &size, const std::string &name, float speed, float maxDistance, float damage);
 
-    Projectile(Projectile &projectile, sf::Vector2f startingPosition, float damage, sf::Vector2f destination);
+    Projectile(Projectile &projectile, sf::Vector2f startingPosition, float damage, float rotation,
+               FightingObject &attacker);
 
-    Projectile(const sf::Vector2f &position, const sf::Vector2f &destination, const sf::Vector2f &size,
-               const std::string &name, float speed, float maxDistance, float damage);
+    Projectile(const sf::Vector2f &position, float rotation, const sf::Vector2f &size,
+               const std::string &name, float speed, float maxDistance, float damage, FightingObject &attacker);
 
     Projectile();
 
@@ -40,7 +41,7 @@ public:
 
     void Draw(sf::RenderWindow &window);
 
-    CollisionObject *hitedObject;
+
 };
 
 

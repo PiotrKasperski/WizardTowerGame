@@ -9,7 +9,7 @@ Weapon::Weapon(std::string name, bool isEquiped, int AP, int defense) {
     this->name = name;
     this->AttackPower = AP;
     this->defense = defense;
-    this->projectile = Projectile(sf::Vector2f(32.0f, 32.0f), this->name, 2.0f, 10.0f, this->AttackPower);
+    this->projectile = Projectile(sf::Vector2f(32.0f, 32.0f), this->name, 10.0f, 1.1f, this->AttackPower);
 }
 
 Weapon::~Weapon() {}

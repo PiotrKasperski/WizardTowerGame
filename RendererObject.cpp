@@ -36,3 +36,12 @@ RendererObject::RendererObject() {}
 const sf::Sprite &RendererObject::getSprite() const {
     return sprite;
 }
+
+bool RendererObject::operator==(const RendererObject &rhs) const {
+    return position == rhs.position &&
+           sprite.getPosition() == rhs.sprite.getPosition();
+}
+
+bool RendererObject::operator!=(const RendererObject &rhs) const {
+    return !(rhs == *this);
+}

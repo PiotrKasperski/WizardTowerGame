@@ -96,3 +96,28 @@ int Staticstics::getStamina() const {
 void Staticstics::setStamina(int stamina) {
     Staticstics::stamina = stamina;
 }
+
+const std::string &Staticstics::getName() const {
+    return name;
+}
+
+void Staticstics::setName(const std::string &name) {
+    Staticstics::name = name;
+}
+
+bool Staticstics::operator==(const Staticstics &rhs) const {
+    return level == rhs.level &&
+           experience == rhs.experience &&
+           maxLife == rhs.maxLife &&
+           currentLife == rhs.currentLife &&
+           strenght == rhs.strenght &&
+           speed == rhs.speed &&
+           defence == rhs.defence &&
+           freePoints == rhs.freePoints &&
+           stamina == rhs.stamina &&
+           name == rhs.name;
+}
+
+bool Staticstics::operator!=(const Staticstics &rhs) const {
+    return !(rhs == *this);
+}

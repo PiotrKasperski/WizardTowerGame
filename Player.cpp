@@ -10,6 +10,7 @@
 #include "FightMenager.h"
 
 Player::Player(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect) {
+    this->setName("Player");
     weaponStart = new Weapon("sword", true, 10, 10);
     armorStart = new Armor("start zbroja", true, 10, 10);
     PlayerEq.push_back(weaponStart);
@@ -129,7 +130,7 @@ void Player::Update(sf::RenderWindow &window) {
 void Player::Fight(std::vector<FightingObject *> vector) {
     if (sf::Keyboard::isKeyPressed((sf::Keyboard::A))) {
         FightMenager::addProjectile(
-                Projectile(this->weaponStart->projectile, this->position, this->strenght, sf::Vector2f(1200, 0)));
+                Projectile(this->weaponStart->projectile, this->position, this->strenght, 0.0f, *this));
 
     }
 }

@@ -3,82 +3,63 @@
 //
 
 #include <iostream>
+#include <cmath>
 #include "Projectile.h"
+#include "../FightMenager.h"
 
 Projectile::~Projectile() = default;
-
-
-/*    if(this->maxDistance > 0) {
-        if (this->destination.x > this->actualPosition.x && this->destination.x > 0) {
-            this->actualPosition.x += this->speed;
-        } else  {
-            this->actualPosition.x -= this->speed;
-        }
-        if (this->destination.y > this->actualPosition.y && this->destination.y > 0) {
-            this->actualPosition.y += this->speed;
-        } else  {
-            this->actualPosition.y -= this->speed;
-        }
-    --this->maxDistance;
-    this->projectileShape.setPosition(this->actualPosition);
-    this->setDmgBoxPosition(sf::Vector2f(this->actualPosition.x, this->actualPosition.y));
-    std::cout << this->getDmgBox().contains(fightingObjects[0]->getDmgBox().left, fightingObjects[0]->getDmgBox().top) << std::endl;
-    //std::cout <<"x: " << this->getDmgBox().left << " y: " << this->getDmgBox().top  << std::endl;
-        for (auto &fightObject: fightingObjects) {
-            if (this->getDmgBox().intersects(fightObject->getDefenseBox()) ||
-                this->getDmgBox().contains(fightObject->getDefenseBox().left, fightObject->getDefenseBox().top)) {
-                fightObject->TakeDamage(
-                        this->damage, *this);
-                projectileObjects.erase(std::find(projectileObjects.begin(), projectileObjects.end(), this));
-            }
-        }
-    } else {
-        projectileObjects.erase(std::find(projectileObjects.begin(), projectileObjects.end(), this));
-    }*/
 
     void Projectile::Draw(sf::RenderWindow &window) {
     window.draw(this->sprite);
 }
 
 void Projectile::move(std::vector<CollisionObject *> vector) {
-    // MovableObjects::move(vector);
+
+    sf::Vector2f moveVector = sf::Vector2f(this->speed * std::cos(M_PI * this->rotation / 180),
+                                           this->speed * std::sin(M_PI * this->rotation / 180));
+    this->maxDistance -= this->speed;
+    this->position += moveVector;
+    this->sprite.setPosition(this->position);
+    this->setDmgBoxPosition(sf::Vector2f(this->position.x, this->position.y));
+
+    if (this->maxDistance <= 0) {
+        this->hited = true;
+    }
+
 }
 
 bool Projectile::isCollision(std::vector<CollisionObject *> vector) {
     for (const auto &item : vector) {
-        for (const auto &boundingBox : *item->getBoundingBoxes()) {
-            if (boundingBox->intersects(this->getDmgBox())) {
-                this->hitedObject = item;
-                return true;
+        if (*item != *this->attacker) {
+            for (const auto &boundingBox : *item->getBoundingBoxes()) {
+                if (boundingBox->contains(this->getDmgBox().left + (this->getDmgBox().width / 2),
+                                          this->getDmgBox().top + (this->getDmgBox().height / 2))) {
+                    this->hited = true;
+                    return true;
+                }
             }
         }
     }
+
     return false;
 }
 
 Projectile::Projectile(const sf::Vector2f &size, const std::string &name, float speed, float maxDistance, float damage)
         : size(size), name(name), speed(speed), maxDistance(maxDistance), damage(damage) {
-
-    // this->sprite.setTexture(this->texture);
-    //this->sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
-
+    this->maxDistance *= 32;
     Projectile::setDmgBox(sf::FloatRect(
             this->position,
             size));
 }
 
-Projectile::Projectile(Projectile &projectile, sf::Vector2f startingPosition, float damage, sf::Vector2f destination) {
+Projectile::Projectile(Projectile &projectile, sf::Vector2f startingPosition, float damage, float rotation,
+                       FightingObject &attacker) {
     *this = projectile;
+    this->attacker = &attacker;
     this->position = startingPosition;
     this->sprite.setPosition(this->position);
-    // this->texture.loadFromFile("../assets/textures/sword.png");
-    if (this->texture.loadFromFile("../assets/textures/sword.png", sf::IntRect(0, 0, 32, 32))) {
-        std::cout << "swordLoaded" << std::endl;
-    }
-    //this->sprite.setTextureRect(sf::IntRect(0,0,32,32));
-    this->sprite.setTexture(this->texture, true);
     this->damage += damage;
-    this->destination = destination;
+    this->rotation = rotation;
     Projectile::setDmgBox(sf::FloatRect(
             this->position,
             this->size));
@@ -86,18 +67,22 @@ Projectile::Projectile(Projectile &projectile, sf::Vector2f startingPosition, fl
 
 Projectile::Projectile() {}
 
-Projectile::Projectile(const sf::Vector2f &position, const sf::Vector2f &destination, const sf::Vector2f &size,
-                       const std::string &name, float speed, float maxDistance, float damage) : actualPosition(
-        position), destination(destination), size(size), name(name), speed(speed), maxDistance(maxDistance),
-                                                                                                damage(damage) {
+Projectile::Projectile(const sf::Vector2f &position, float rotation, const sf::Vector2f &size,
+                       const std::string &name, float speed, float maxDistance, float damage, FightingObject &attacker)
+        :
+        actualPosition(position), rotation(rotation), size(size), name(name), speed(speed),
+        maxDistance(maxDistance), damage(damage), attacker(&attacker) {
+    this->rotation += 180.0;
     this->position = actualPosition;
-    this->sprite.setPosition(this->position);
-    // this->texture.loadFromFile("../assets/textures/sword.png");
-    if (this->texture.loadFromFile("../assets/textures/sword.png", sf::IntRect(0, 0, 32, 32))) {
+    this->position.x += 16;
+    this->position.y += 16;
+    if (this->texture.loadFromFile("../assets/textures/" + this->name + ".png", sf::IntRect(0, 0, 32, 32))) {
         std::cout << "swordLoaded" << std::endl;
     }
-    //this->sprite.setTextureRect(sf::IntRect(0,0,32,32));
     this->sprite.setTexture(this->texture, true);
+    this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 2, this->sprite.getGlobalBounds().height / 2);
+    this->sprite.rotate(this->rotation + 45.0);
+    this->sprite.setPosition(this->position);
     Projectile::setDmgBox(sf::FloatRect(
             this->position,
             this->size));

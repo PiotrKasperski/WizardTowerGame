@@ -29,6 +29,10 @@ public:
 
     RendererObject();
 
+    bool operator==(const RendererObject &rhs) const;
+
+    bool operator!=(const RendererObject &rhs) const;
+
     const sf::Sprite &getSprite() const;
 
 protected:

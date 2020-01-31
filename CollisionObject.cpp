@@ -46,3 +46,12 @@ std::vector<sf::FloatRect *> *CollisionObject::getBoundingBoxes() {
 void CollisionObject::setPosition(const sf::Vector2f &position) {
     RendererObject::setPosition(position);
 }
+
+bool CollisionObject::operator==(const CollisionObject &rhs) const {
+    return static_cast<const RendererObject &>(*this) == static_cast<const RendererObject &>(rhs) &&
+           boundingBoxes == rhs.boundingBoxes;
+}
+
+bool CollisionObject::operator!=(const CollisionObject &rhs) const {
+    return !(rhs == *this);
+}

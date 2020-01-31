@@ -80,6 +80,7 @@ std::istream &operator>>(std::istream &in, Enemy &enemy) {
         std::cout << dis(gen) << ' ';
     std::cout << '\n';*/
     in >> enemy.enemyName;
+    enemy.setName(enemy.enemyName);
     in >> enemy.level;
     in >> enemy.experience;
     in >> enemy.maxLife;

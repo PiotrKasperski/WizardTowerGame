@@ -73,7 +73,7 @@ void Engine::eventHandler() {
 
 void Engine::update() {
 
-    this->fightMenager->update(this->collisionObject);
+
 
     for (auto &movableObject : movableObjects) {
         movableObject->move(collisionObject);
@@ -89,6 +89,7 @@ void Engine::update() {
        }*/
 
     this->story->Update(this->rendererObject, this->movableObjects, this->collisionObject, this->fightingObjects);
+    this->fightMenager->update(this->collisionObject);
     this->camera->Update(this->story->getPlayer()->getPosition());
     this->rendererObject.push_back(hud);
     this->rendererObject.push_back(invGui);

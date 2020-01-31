@@ -15,6 +15,10 @@ public:
 
     void setPosition(const sf::Vector2f &position) override;
 
+    bool operator==(const MovableObjects &rhs) const;
+
+    bool operator!=(const MovableObjects &rhs) const;
+
 protected:
     sf::Vector2f moveVector;
 };

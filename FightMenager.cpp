@@ -3,6 +3,7 @@
 //
 
 #include "FightMenager.h"
+#include <iostream>
 
 std::vector<Projectile *> FightMenager::projectileVector;
 
@@ -11,12 +12,14 @@ FightMenager::FightMenager(std::vector<FightingObject *> *fightingObjectVector) 
 
 void FightMenager::update(std::vector<CollisionObject *> colisionObjectVector) {
     this->moveProjectiles(colisionObjectVector);
+    this->clear();
 }
 
 void FightMenager::moveProjectiles(std::vector<CollisionObject *> &colisionObjectVector) {
     for (auto projectile : FightMenager::projectileVector) {
-        projectile->move(colisionObjectVector);
         checkHit(colisionObjectVector, *projectile);
+        projectile->move(colisionObjectVector);
+
     }
 }
 
@@ -28,25 +31,41 @@ void FightMenager::checkHit(std::vector<CollisionObject *> &colisionObjectVector
 
 void FightMenager::manageHit(Projectile &projectile) {
     for (auto &fightingObject : *this->fightingObjectVector) {
-        if (fightingObject->getDefenseBox().intersects(projectile.getDmgBox())) {
+        if (fightingObject->getDefenseBox().intersects(projectile.getDmgBox()) &&
+            projectile.attacker->getName().compare(fightingObject->getName())) {
             fightingObject->TakeDamage(projectile.damage, *fightingObject);
+
         }
-        FightMenager::projectileVector.erase(
-                std::remove(FightMenager::projectileVector.begin(), FightMenager::projectileVector.end(), &projectile),
-                FightMenager::projectileVector.end());
     }
 }
 
 void FightMenager::addProjectile(Projectile projectile) {
-    Projectile *tmp = new Projectile(projectile.getPosition(), projectile.destination, projectile.size, projectile.name,
-                                     projectile.speed, projectile.maxDistance, projectile.damage);
+    Projectile *tmp = new Projectile(projectile.getPosition(), projectile.rotation, projectile.size, projectile.name,
+                                     projectile.speed, projectile.maxDistance, projectile.damage, *projectile.attacker);
     FightMenager::projectileVector.push_back(tmp);
 }
 
 FightMenager::FightMenager() {}
 
 void FightMenager::draw(sf::RenderWindow *window) {
+    this->clear();
     for (const auto item : projectileVector) {
         item->Draw(*window);
     }
 }
+
+std::vector<Projectile *> &FightMenager::getProjectileVector() {
+    return projectileVector;
+}
+
+void FightMenager::clear() {
+    for (auto &projectile : projectileVector) {
+        if (projectile->hited) {
+            FightMenager::projectileVector.erase(
+                    std::remove(FightMenager::projectileVector.begin(), FightMenager::projectileVector.end(),
+                                projectile),
+                    FightMenager::projectileVector.end());
+        }
+    }
+}
+

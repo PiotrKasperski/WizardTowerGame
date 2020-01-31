@@ -31,6 +31,12 @@ public:
     void setDefenseBox(const sf::FloatRect &defenseBox);
 
     void Update(sf::RenderWindow &window) override;
+
+    bool operator==(const FightingObject &rhs) const;
+
+    bool operator!=(const FightingObject &rhs) const;
+
+    bool operator!=(const CollisionObject &rhs) const;
 };
 
 
