@@ -38,7 +38,8 @@ void FightMenager::manageHit(Projectile &projectile) {
 }
 
 void FightMenager::addProjectile(Projectile projectile) {
-    Projectile *tmp = new Projectile(projectile);
+    Projectile *tmp = new Projectile(projectile.getPosition(), projectile.destination, projectile.size, projectile.name,
+                                     projectile.speed, projectile.maxDistance, projectile.damage);
     FightMenager::projectileVector.push_back(tmp);
 }
 

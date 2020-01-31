@@ -128,9 +128,9 @@ void Player::Update(sf::RenderWindow &window) {
 
 void Player::Fight(std::vector<FightingObject *> vector) {
     if (sf::Keyboard::isKeyPressed((sf::Keyboard::A))) {
-        FightMenager tmpMenager;
-        tmpMenager.addProjectile(
+        FightMenager::addProjectile(
                 Projectile(this->weaponStart->projectile, this->position, this->strenght, sf::Vector2f(1200, 0)));
+
     }
 }
 

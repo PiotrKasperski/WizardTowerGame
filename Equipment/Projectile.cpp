@@ -58,11 +58,9 @@ bool Projectile::isCollision(std::vector<CollisionObject *> vector) {
 
 Projectile::Projectile(const sf::Vector2f &size, const std::string &name, float speed, float maxDistance, float damage)
         : size(size), name(name), speed(speed), maxDistance(maxDistance), damage(damage) {
-    if (this->texture.loadFromFile("../assets/textures/sword.png")) {
-        std::cout << "swordLoaded" << std::endl;
-    }
-    this->sprite.setTexture(this->texture);
-    this->sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
+
+    // this->sprite.setTexture(this->texture);
+    //this->sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
 
     Projectile::setDmgBox(sf::FloatRect(
             this->position,
@@ -73,9 +71,12 @@ Projectile::Projectile(Projectile &projectile, sf::Vector2f startingPosition, fl
     *this = projectile;
     this->position = startingPosition;
     this->sprite.setPosition(this->position);
-    this->texture.loadFromFile("../assets/textures/sword.png");
+    // this->texture.loadFromFile("../assets/textures/sword.png");
+    if (this->texture.loadFromFile("../assets/textures/sword.png", sf::IntRect(0, 0, 32, 32))) {
+        std::cout << "swordLoaded" << std::endl;
+    }
     //this->sprite.setTextureRect(sf::IntRect(0,0,32,32));
-    this->sprite.setTexture(this->texture);
+    this->sprite.setTexture(this->texture, true);
     this->damage += damage;
     this->destination = destination;
     Projectile::setDmgBox(sf::FloatRect(
@@ -84,6 +85,24 @@ Projectile::Projectile(Projectile &projectile, sf::Vector2f startingPosition, fl
 }
 
 Projectile::Projectile() {}
+
+Projectile::Projectile(const sf::Vector2f &position, const sf::Vector2f &destination, const sf::Vector2f &size,
+                       const std::string &name, float speed, float maxDistance, float damage) : actualPosition(
+        position), destination(destination), size(size), name(name), speed(speed), maxDistance(maxDistance),
+                                                                                                damage(damage) {
+    this->position = actualPosition;
+    this->sprite.setPosition(this->position);
+    // this->texture.loadFromFile("../assets/textures/sword.png");
+    if (this->texture.loadFromFile("../assets/textures/sword.png", sf::IntRect(0, 0, 32, 32))) {
+        std::cout << "swordLoaded" << std::endl;
+    }
+    //this->sprite.setTextureRect(sf::IntRect(0,0,32,32));
+    this->sprite.setTexture(this->texture, true);
+    Projectile::setDmgBox(sf::FloatRect(
+            this->position,
+            this->size));
+}
+
 
 
 

@@ -22,7 +22,7 @@ public:
 
     void manageHit(Projectile &projectile);
 
-    void addProjectile(Projectile projectile);
+    static void addProjectile(Projectile projectile);
 
     void draw(sf::RenderWindow *window);
 

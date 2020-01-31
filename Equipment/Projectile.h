@@ -28,6 +28,9 @@ public:
 
     Projectile(Projectile &projectile, sf::Vector2f startingPosition, float damage, sf::Vector2f destination);
 
+    Projectile(const sf::Vector2f &position, const sf::Vector2f &destination, const sf::Vector2f &size,
+               const std::string &name, float speed, float maxDistance, float damage);
+
     Projectile();
 
     ~Projectile();
