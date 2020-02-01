@@ -9,10 +9,11 @@
 void LootGui::initFont() {
     this->font.loadFromFile("../assets/Fonts/font.ttf");
 }
-LootGui::LootGui(Player* player) {
+LootGui::LootGui(Player* player, Story* story) {
     this->initFont();
     this->drawLoot = false;
     this->player  = player;
+    this->story = story;
     this->invDialog.setSize(sf::Vector2f(128 , 19));
     this->invDialog.setFillColor(sf::Color::Blue);
     this->invTexture.loadFromFile("../assets/textures/stat.png");
@@ -21,12 +22,7 @@ LootGui::LootGui(Player* player) {
     this->invDialog.setFillColor(sf::Color::Blue);
     this->lootSprite.setTexture(invTexture);
 
-//    testWeapon = new Weapon("loot bron", false, 10, 10);
-//    testWeapon2 = new Weapon("loot n bron", false, 10, 10);
-    testArmor = new Armor("loot zbroja", false, 10, 10);
-    lootToDraw.push_back(testWeapon);
-    lootToDraw.push_back(testWeapon2);
-    lootToDraw.push_back(testArmor);
+
 
 }
 LootGui::~LootGui() = default;
@@ -38,10 +34,18 @@ void LootGui::Update(sf::RenderWindow &window) {
     LootGui::invToDraw = player->PlayerEq;
     LootGui::positionInvText.clear();
     LootGui::positionLootText.clear();
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+    if(story->checkIfMobGotKilled())
     {
-        while(sf::Keyboard::isKeyPressed(sf::Keyboard::L)) {}
-        this->drawLoot = !this->drawLoot;
+        story->ResetMobKilledBool();
+        std::cout << story->checkIfMobGotKilled() << std::endl;
+        srand (time(NULL));
+        if((rand() & 100) < 99){
+            lootToDraw.clear();
+            testWeapon = new Weapon("loot bron", false, 100, 10);
+            lootToDraw.push_back(testWeapon);
+            this->drawLoot = !this->drawLoot;
+
+        }
     }
     // wypelnianie wektora position textem do wypisania inventory
     for (size_t i = 0 ; i < LootGui::invToDraw.size() ; i++)
@@ -69,6 +73,7 @@ void LootGui::Update(sf::RenderWindow &window) {
     backToGameText.setString("WROC");
     backToGameText.setCharacterSize(20);
     backToGameText.setPosition(player->getPosition().x - 100 , player->getPosition().y + 100 );
+
 
 }
 

@@ -13,15 +13,20 @@
 
 class Story {
 private:
+    bool mobKilled;
     std::vector<Maps *> maps;
     std::vector<Quest *> quests;
     //FightMenager fightMenager;
 public:
+
     friend std::istream &operator>>(std::istream &in, Story &story);
     Maps *currentMap;
     Player *player;
 
-    void kill(std::vector<FightingObject *> &fightingObjects);
+    bool checkIfMobGotKilled();
+    void ResetMobKilledBool();
+
+        void kill(std::vector<FightingObject *> &fightingObjects);
 
     void levelUp();
 

@@ -9,6 +9,9 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include "../../RendererObject.h"
 #include "../../Player.h"
+#include "../../Story.h"
+#include <stdlib.h>
+#include <time.h>
 
 class LootGui: public RendererObject {
 private:
@@ -16,6 +19,7 @@ private:
     Weapon *testWeapon2;
     Armor *testArmor;
     Player* player;
+    Story* story;
     sf::Font font;
     sf::RectangleShape invDialog;
     sf::RectangleShape lootDialog;
@@ -33,7 +37,7 @@ private:
 
     void initFont();
 public:
-    LootGui(Player* player);
+    LootGui(Player* player, Story* story);
     ~LootGui();
 
 

@@ -26,7 +26,7 @@ Engine::Engine(sf::RenderWindow &window) {
     this->hud = new Hud(this->story->getPlayer());
     this->invGui = new InventoryGui(this->story->getPlayer());
     this->statsGui = new StatsGui(this->story->getPlayer());
-    // this->lootGui = new LootGui(this->story->getPlayer());
+    this->lootGui = new LootGui(this->story->getPlayer(), this->story);
 
     this->runEngine();
 }
@@ -94,7 +94,7 @@ void Engine::update() {
     this->rendererObject.push_back(hud);
     this->rendererObject.push_back(invGui);
     this->rendererObject.push_back(statsGui);
-    // this->rendererObject.push_back(lootGui);
+     this->rendererObject.push_back(lootGui);
 }
 
 void Engine::draw() {

@@ -23,6 +23,7 @@ std::istream &operator>>(std::istream &in, Story &story) {
     return in;
 }
 Story::Story() {
+    this->mobKilled = false;
     this->player = new Player(sf::Vector2f(18 * 32.0f, 58 * 32.0f), "../assets/textures/character.png",
                               sf::IntRect(32, 64, 32, 32));
 }
@@ -59,6 +60,12 @@ void Story::loadCurrentMap(std::vector<RendererObject *> &rendererObject, std::v
 Player *Story::getPlayer() const {
     return player;
 }
+bool Story::checkIfMobGotKilled() {
+    return mobKilled;
+}
+void Story::ResetMobKilledBool() {
+    this->mobKilled = false;
+}
 
 void Story::Update(std::vector<RendererObject *> &rendererObject, std::vector<MovableObjects *> &movableObjects,
                    std::vector<CollisionObject *> &collisionObject, std::vector<FightingObject *> &fightingObjects) {
@@ -71,12 +78,14 @@ void Story::Update(std::vector<RendererObject *> &rendererObject, std::vector<Mo
 
 void Story::kill(std::vector<FightingObject *> &fightingObjects) {
     for (auto &item : fightingObjects) {
-        if (item->getCurrentLife() <= 0) {
+        if ((item->getCurrentLife() <= 0) && (dynamic_cast<Player *>(item) == nullptr)) {
             this->currentMap->getEnemies().erase(
                     std::remove(this->currentMap->getEnemies().begin(), this->currentMap->getEnemies().end(), item),
                     this->currentMap->getEnemies().end());
             this->player->increaseExperience(item->getExperience());
-
+            this->mobKilled = true;
+        } else if(((item->getCurrentLife() <= 0) && (dynamic_cast<Player *>(item) != nullptr))) {
+            std::cout << "dyntka xD xD " << std::endl;
         }
     }
 }
