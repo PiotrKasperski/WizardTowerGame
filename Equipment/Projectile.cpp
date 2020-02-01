@@ -72,6 +72,7 @@ Projectile::Projectile(const sf::Vector2f &position, float rotation, const sf::V
         :
         actualPosition(position), rotation(rotation), size(size), name(name), speed(speed),
         maxDistance(maxDistance), damage(damage), attacker(&attacker) {
+    this->rotation += 180.0;
     this->position = actualPosition;
     this->position.x += 16;
     this->position.y += 16;

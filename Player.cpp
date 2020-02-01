@@ -11,7 +11,6 @@
 
 Player::Player(const sf::Vector2f &position, const std::string &textureFilename, sf::IntRect textureRect) {
     this->setName("Player");
-    this->rotation = 0.0f;
     weaponStart = new Weapon("sword", true, 10, 10);
     armorStart = new Armor("start zbroja", true, 10, 10);
     PlayerEq.push_back(weaponStart);
@@ -37,19 +36,15 @@ void Player::move(std::vector<CollisionObject *> colObj) {
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         MovableObjects::moveVector.y -= 10;
-        this->rotation = 270.0f;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         MovableObjects::moveVector.y += 10;
-        this->rotation = 90.0f;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         MovableObjects::moveVector.x -= 10;
-        this->rotation = 180.0f;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         MovableObjects::moveVector.x += 10;
-        this->rotation = 0.0f;
     }
 
 
@@ -135,7 +130,7 @@ void Player::Update(sf::RenderWindow &window) {
 void Player::Fight(std::vector<FightingObject *> vector) {
     if (sf::Keyboard::isKeyPressed((sf::Keyboard::A))) {
         FightMenager::addProjectile(
-                Projectile(this->weaponStart->projectile, this->position, this->strenght, this->rotation, *this));
+                Projectile(this->weaponStart->projectile, this->position, this->strenght, 0.0f, *this));
 
     }
 }
