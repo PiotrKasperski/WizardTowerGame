@@ -16,6 +16,7 @@
 
 class Player : public FightingObject {
 public:
+    float rotation;
     Weapon* weaponStart;
     Armor* armorStart;
     std::vector<Equipment *> PlayerEq;
