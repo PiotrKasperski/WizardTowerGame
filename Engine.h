@@ -18,7 +18,6 @@
 #include "Interface/StatsGui/StatsGui.h"
 #include "Interface/LootGui/LootGui.h"
 #include "Equipment/Projectile.h"
-#include "Menu.h"
 
 class Engine {
 public:

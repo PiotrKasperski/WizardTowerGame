@@ -30,6 +30,8 @@ public:
     void move(std::vector<CollisionObject *>) override;
 
     void Update(sf::RenderWindow &window) override;
+
+    void setSpriteRotation();
 };
 
 

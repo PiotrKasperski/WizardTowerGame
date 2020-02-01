@@ -124,6 +124,8 @@ void Player::Update(sf::RenderWindow &window) {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X)){
         this->LevelUp();
     }
+    if (Staticstics::currentLife < Staticstics::maxLife) Staticstics::currentLife++;
+    this->setSpriteRotation();
     Player::sprite.setPosition(Player::position.x, Player::position.y);
 }
 
@@ -137,6 +139,21 @@ void Player::Fight(std::vector<FightingObject *> vector) {
 
 void Player::TakeDamage(int gainedDmg, FightingObject &object) {
     FightingObject::TakeDamage(gainedDmg, object);
+}
+
+void Player::setSpriteRotation() {
+    if (this->rotation == 0.0) {
+        this->sprite.setTextureRect(sf::IntRect(32, 32, 32, 32));
+    }
+    if (this->rotation == 90.0) {
+        this->sprite.setTextureRect(sf::IntRect(32, 64, 32, 32));
+    }
+    if (this->rotation == 180.0) {
+        this->sprite.setTextureRect(sf::IntRect(32, 96, 32, 32));
+    }
+    if (this->rotation == 270.0) {
+        this->sprite.setTextureRect(sf::IntRect(32, 0, 32, 32));
+    }
 }
 
 
