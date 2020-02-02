@@ -84,8 +84,6 @@ void Story::kill(std::vector<FightingObject *> &fightingObjects) {
                     this->currentMap->getEnemies().end());
             this->player->increaseExperience(item->getExperience());
             this->mobKilled = true;
-        } else if(((item->getCurrentLife() <= 0) && (dynamic_cast<Player *>(item) != nullptr))) {
-            std::cout << "dyntka xD xD " << std::endl;
         }
     }
 }
